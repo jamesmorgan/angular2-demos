@@ -1,0 +1,39 @@
+<div id="container">
+
+    <div id="output">
+        <input type="text" class="details" [(ngModel)]="history"/>
+        <button id="back" class="btn top" (click)="onBack()">Back</button>
+        <br/>
+        <input type="text" class="details" [(ngModel)]="result" placeholder="..."/>
+        <button id="clear" class="btn top" (click)="onClear()">Clear</button>
+
+    </div>
+
+    <div id="keys">
+        <div id="row1">
+            <button id="digit_7" class="btn" (click)="onDigit('7')">7</button>
+            <button id="digit_8" class="btn" (click)="onDigit('8')">8</button>
+            <button id="digit_9" class="btn" (click)="onDigit('9')">9</button>
+            <button id="divide" class="btn" (click)="onAction('/')">/</button>
+        </div>
+        <div id="row2">
+            <button id="digit_4" class="btn" (click)="onDigit('4')">4</button>
+            <button id="digit_5" class="btn" (click)="onDigit('5')">5</button>
+            <button id="digit_6" class="btn" (click)="onDigit('6')">6</button>
+            <button id="multiply" class="btn" (click)="onAction('x')">x</button>
+        </div>
+        <div id="row3">
+            <button id="digit_1" class="btn" (click)="onDigit('1')">1</button>
+            <button id="digit_2" class="btn" (click)="onDigit('2')">2</button>
+            <button id="digit_3" class="btn" (click)="onDigit('3')">3</button>
+            <button id="minus" class="btn" (click)="onAction('-')">-</button>
+        </div>
+        <div id="row4">
+            <button id="zero" class="btn" (click)="onDigit('0')">0</button>
+            <button id="decimal" class="btn" (click)="onDigit('.')">.</button>
+            <button id="percent" class="btn" (click)="onAnswer()">=</button>
+            <button id="addition" class="btn" (click)="onAction('+')">+</button>
+        </div>
+    </div>
+
+</div>
