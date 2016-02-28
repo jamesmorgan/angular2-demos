@@ -34,13 +34,15 @@ System.register(['angular2/core', "../core/todo.service", '../todo-form.componen
                     this._subscription = this._todoService.todoListChange.subscribe(function () { return _this.getTodoList(); });
                 }
                 TodoDashboardComponent.prototype.ngOnDestroy = function () {
+                    console.log('Calling ngOnDestroy()');
                     this._subscription.unsubscribe();
                 };
                 TodoDashboardComponent.prototype.ngOnInit = function () {
+                    console.log('Calling ngOnInit()');
                     this.getTodoList();
                 };
                 TodoDashboardComponent.prototype.getTodoList = function () {
-                    console.log('Calling getTodoList()');
+                    console.log('Calling getTodoList()', this._todoService.todoList);
                     this.todoList = this._todoService.todoList;
                 };
                 TodoDashboardComponent = __decorate([

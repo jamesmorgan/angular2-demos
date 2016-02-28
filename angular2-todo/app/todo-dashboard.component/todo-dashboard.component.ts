@@ -22,15 +22,17 @@ export class TodoDashboardComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        console.log('Calling ngOnDestroy()');
         this._subscription.unsubscribe();
     }
 
     ngOnInit() {
+        console.log('Calling ngOnInit()');
         this.getTodoList();
     }
 
     getTodoList() {
-        console.log('Calling getTodoList()');
+        console.log('Calling getTodoList()', this._todoService.todoList);
         this.todoList = this._todoService.todoList;
     }
 }

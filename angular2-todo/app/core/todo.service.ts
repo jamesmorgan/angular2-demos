@@ -13,7 +13,7 @@ export class TodoService {
     todoListChange:EventEmitter = new EventEmitter<Todo[]>();
 
     public constructor() {
-        this.todoList.push(TODOS);
+        this.todoList = this.todoList.concat(TODOS);
         this.todoListChange.emit(null);
     }
 
