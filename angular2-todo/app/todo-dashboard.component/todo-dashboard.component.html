@@ -1,11 +1,26 @@
 <h3>Todo Dashboard</h3>
 
 <div class="g-row">
+
     <div class="g-col">
         <todo-form></todo-form>
     </div>
 
     <div class="g-col">
+
+        <h5>Current component (WORKING)</h5>
+        <div class="task-list">
+            <li *ngFor="#todo of todoList">
+                <div>
+                    {{todo.todo}} - {{todo.created}} - {{todo.done}}
+                </div>
+            </li>
+        </div>
+
+        <h5>Child Directive list below (NOT WORKING)</h5>
+
+        <!-- TODO this does not re-bind -->
         <todo-list [(todoList)]="todoList"></todo-list>
+
     </div>
 </div>

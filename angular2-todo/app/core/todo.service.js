@@ -24,10 +24,9 @@ System.register(["angular2/core", "./mock-todos"], function(exports_1, context_1
         execute: function() {
             TodoService = (function () {
                 function TodoService() {
-                    this.todoList = [];
+                    this.todoList = mock_todos_1.TODOS;
                     this.todoListChange = new core_2.EventEmitter();
-                    this.todoList = this.todoList.concat(mock_todos_1.TODOS);
-                    this.todoListChange.emit(null);
+                    this.todoListChange.emit(this.todoList);
                 }
                 TodoService.prototype.addTodo = function (todo) {
                     console.log('Adding todo', todo);

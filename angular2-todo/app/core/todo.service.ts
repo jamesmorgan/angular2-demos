@@ -1,6 +1,4 @@
 import {Injectable} from "angular2/core";
-import {ReplaySubject} from 'rxjs/subject/ReplaySubject';
-import {Output} from "angular2/core";
 import {EventEmitter} from "angular2/core";
 
 import {Todo} from "./todo";
@@ -9,12 +7,11 @@ import {TODOS} from "./mock-todos";
 @Injectable()
 export class TodoService {
 
-    todoList:Todo[] = [];
+    todoList:Todo[] = TODOS;
     todoListChange:EventEmitter = new EventEmitter<Todo[]>();
 
     public constructor() {
-        this.todoList = this.todoList.concat(TODOS);
-        this.todoListChange.emit(null);
+        this.todoListChange.emit(this.todoList);
     }
 
     public addTodo(todo:Todo) {

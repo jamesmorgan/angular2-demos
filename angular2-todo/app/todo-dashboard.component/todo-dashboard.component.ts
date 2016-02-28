@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from 'angular2/core';
+import {Component, OnInit, OnDestroy} from 'angular2/core';
 import {EventEmitter} from "angular2/core";
 
 import {TodoService} from "../core/todo.service";

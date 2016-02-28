@@ -42,8 +42,8 @@ System.register(['angular2/core', "../core/todo.service", '../todo-form.componen
                     this.getTodoList();
                 };
                 TodoDashboardComponent.prototype.getTodoList = function () {
-                    console.log('Calling getTodoList()', this._todoService.todoList);
                     this.todoList = this._todoService.todoList;
+                    console.log('Calling getTodoList()', this.todoList);
                 };
                 TodoDashboardComponent = __decorate([
                     core_1.Component({
