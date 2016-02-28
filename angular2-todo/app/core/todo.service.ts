@@ -8,7 +8,7 @@ import {TODOS} from "./mock-todos";
 export class TodoService {
 
     todoList:Todo[] = TODOS;
-    todoListChange:EventEmitter = new EventEmitter<Todo[]>();
+    todoListChange = new EventEmitter<Todo[]>();
 
     public constructor() {
         this.todoListChange.emit(this.todoList);

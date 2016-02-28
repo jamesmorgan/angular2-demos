@@ -1,11 +1,8 @@
-
 <div class="task-list">
 
     <li *ngFor="#todo of todoList">
         <div>
-            <!-- TODO toggle complete -->
-            <!-- TODO edit? -->
-            {{todo.todo}} - {{todo.created}} - {{todo.done}}
+            <todo-list-item [todo]="todo"></todo-list-item>
         </div>
     </li>
 

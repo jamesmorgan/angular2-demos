@@ -8,18 +8,16 @@
 
     <div class="g-col">
 
-        <h5>Current component (WORKING)</h5>
+        <h5>Bind to current component component (WORKING)</h5>
         <div class="task-list">
             <li *ngFor="#todo of todoList">
                 <div>
-                    {{todo.todo}} - {{todo.created}} - {{todo.done}}
+                    <todo-list-item [todo]="todo"></todo-list-item>
                 </div>
             </li>
         </div>
 
-        <h5>Child Directive list below (NOT WORKING)</h5>
-
-        <!-- TODO this does not re-bind -->
+        <h5>Bind as property on child (WORKING)</h5>
         <todo-list [(todoList)]="todoList"></todo-list>
 
     </div>

@@ -1,4 +1,4 @@
-System.register(['angular2/core', "../core/todo.service", '../todo-form.component/todo-form.component', '../todo-list.component/todo-list.component'], function(exports_1, context_1) {
+System.register(['angular2/core', "../core/todo.service", '../todo-form.component/todo-form.component', '../todo-list.component/todo-list.component', "../todo-list-item.component/todo-list-item.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', "../core/todo.service", '../todo-form.componen
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, todo_service_1, todo_form_component_1, todo_list_component_1;
+    var core_1, todo_service_1, todo_form_component_1, todo_list_component_1, todo_list_item_component_1;
     var TodoDashboardComponent;
     return {
         setters:[
@@ -25,6 +25,9 @@ System.register(['angular2/core', "../core/todo.service", '../todo-form.componen
             },
             function (todo_list_component_1_1) {
                 todo_list_component_1 = todo_list_component_1_1;
+            },
+            function (todo_list_item_component_1_1) {
+                todo_list_item_component_1 = todo_list_item_component_1_1;
             }],
         execute: function() {
             TodoDashboardComponent = (function () {
@@ -50,7 +53,7 @@ System.register(['angular2/core', "../core/todo.service", '../todo-form.componen
                         selector: 'my-todo-dashboard',
                         templateUrl: 'app/todo-dashboard.component/todo-dashboard.component.html',
                         styleUrls: ['app/todo-dashboard.component/todo-dashboard.component.css'],
-                        directives: [todo_form_component_1.TodoFormComponent, todo_list_component_1.TodoListComponent]
+                        directives: [todo_form_component_1.TodoFormComponent, todo_list_component_1.TodoListComponent, todo_list_item_component_1.TodoListItemComponent]
                     }), 
                     __metadata('design:paramtypes', [todo_service_1.TodoService])
                 ], TodoDashboardComponent);
