@@ -1,0 +1,13 @@
+
+<div class="task-list">
+    <li *ngFor="#todo of todoList">
+        <div>
+            {{todo.todo}} - {{todo.created}} - {{todo.done}}
+        </div>
+    </li>
+    <li *ngFor="#todo of [(todoList)]">
+        <div>
+            {{todo.todo}} - {{todo.created}} - {{todo.done}}
+        </div>
+    </li>
+</div>

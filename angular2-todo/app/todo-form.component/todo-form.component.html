@@ -1,0 +1,12 @@
+<form class="task-form" (ngSubmit)="submit()" novalidate>
+    <input
+            (keyup.escape)="clear()"
+            ngControl="todo"
+            [(ngModel)]="todo"
+            autocomplete="off"
+            autofocus
+            class="task-form__input"
+            placeholder="Add a Todo..."
+            required
+            type="text">
+</form>
