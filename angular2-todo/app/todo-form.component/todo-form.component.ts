@@ -7,6 +7,7 @@ import {TodoService} from "../core/todo.service";
     styleUrls: ['app/todo-form.component/todo-form.component.css']
 })
 export class TodoFormComponent {
+
     todo:string = '';
 
     constructor(private _todoService:TodoService) {

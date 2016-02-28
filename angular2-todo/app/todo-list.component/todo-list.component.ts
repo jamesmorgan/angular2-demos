@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from 'angular2/core';
 import { RouterLink, RouteParams } from 'angular2/router';
-import { ReplaySubject } from 'rxjs/subject/ReplaySubject';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,

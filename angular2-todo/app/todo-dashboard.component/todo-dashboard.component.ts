@@ -1,5 +1,6 @@
 import {Component, OnInit, OnDestroy} from 'angular2/core';
 import {EventEmitter} from "angular2/core";
+import {ChangeDetectionStrategy} from "angular2/core";
 
 import {TodoService} from "../core/todo.service";
 import {TodoFormComponent} from '../todo-form.component/todo-form.component';
