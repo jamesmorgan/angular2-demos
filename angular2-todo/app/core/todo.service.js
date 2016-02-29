@@ -38,11 +38,11 @@ System.register(["angular2/core", "./mock-todos"], function(exports_1, context_1
                     this.todoList.splice(index, 1);
                     this.todoListChange.emit(this.todoList);
                 };
-                TodoService.prototype.markDone = function (todo, index) {
+                TodoService.prototype.markDone = function (todo) {
                     todo.done = true;
                     this.todoListChange.emit(this.todoList);
                 };
-                TodoService.prototype.markIncomplete = function (todo, index) {
+                TodoService.prototype.markIncomplete = function (todo) {
                     todo.done = false;
                     this.todoListChange.emit(this.todoList);
                 };

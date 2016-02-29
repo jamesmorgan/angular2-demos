@@ -6,9 +6,9 @@ System.register([], function(exports_1, context_1) {
         setters:[],
         execute: function() {
             exports_1("TODOS", TODOS = [
-                { todo: '1', created: new Date(), done: false },
-                { todo: '2', created: new Date(), done: false },
-                { todo: '3', created: new Date(), done: false }
+                { todo: 'The first Todo', created: new Date(), done: false },
+                { todo: 'Another Todo', created: new Date(), done: false },
+                { todo: 'The Final mock Todo', created: new Date(), done: false }
             ]);
         }
     }

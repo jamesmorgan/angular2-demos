@@ -8,6 +8,10 @@
 
     <div class="g-col">
 
+        <h5>Basic filter Pipe (NOT WORKING)</h5>
+        Completed ({{ todoList | todoCount:'complete'}}) | Open ({{ todoList | todoCount:'open'}})
+        <hr/>
+
         <h5>Bind to current component component (WORKING)</h5>
         <div class="task-list">
             <li *ngFor="#todo of todoList">
@@ -16,6 +20,7 @@
                 </div>
             </li>
         </div>
+        <hr/>
 
         <h5>Bind as property on child (WORKING)</h5>
         <todo-list [(todoList)]="todoList"></todo-list>

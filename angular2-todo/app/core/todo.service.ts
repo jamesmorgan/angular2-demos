@@ -26,12 +26,12 @@ export class TodoService {
         this.todoListChange.emit(this.todoList);
     }
 
-    public markDone(todo:Todo, index:number):void {
+    public markDone(todo:Todo):void {
         todo.done = true;
         this.todoListChange.emit(this.todoList);
     }
 
-    public markIncomplete(todo:Todo, index:number):void {
+    public markIncomplete(todo:Todo):void {
         todo.done = false;
         this.todoListChange.emit(this.todoList);
     }
