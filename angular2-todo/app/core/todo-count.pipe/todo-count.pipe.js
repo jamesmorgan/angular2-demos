@@ -22,25 +22,27 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 function TodoCountPipe() {
                 }
                 TodoCountPipe.prototype.transform = function (todos, filterType) {
+                    console.log('pipe', todos);
                     if (!todos || !filterType) {
-                        return todos.length;
+                        return todos;
                     }
                     switch (filterType[0]) {
                         case 'completed':
                             return todos.filter(function (todo) {
-                                return !todo.done;
-                            }).length;
+                                return todo.done;
+                            });
                         case 'open':
                             return todos.filter(function (todo) {
-                                return todo.done;
-                            }).length;
+                                return !todo.done;
+                            });
                         default:
-                            return todos.length;
+                            return todos;
                     }
                 };
                 TodoCountPipe = __decorate([
                     core_1.Pipe({
-                        name: 'todoCount'
+                        name: 'todoCount',
+                        pure: true
                     }), 
                     __metadata('design:paramtypes', [])
                 ], TodoCountPipe);

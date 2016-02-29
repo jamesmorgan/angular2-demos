@@ -1,24 +1,28 @@
 import { Pipe, PipeTransform } from 'angular2/core';
 
 @Pipe({
-    name: 'todoCount'
+    name: 'todoCount',
+    pure: true
 })
 export class TodoCountPipe implements PipeTransform {
+
     transform(todos:Todo[], filterType?:string[]) {
+        console.log('pipe', todos);
         if (!todos || !filterType) {
-            return todos.length;
+            return todos;
         }
+
         switch (filterType[0]) {
             case 'completed':
                 return todos.filter(function (todo) {
-                    return !todo.done
-                }).length;
+                    return todo.done
+                });
             case 'open':
                 return todos.filter(function (todo) {
-                    return todo.done
-                }).length;
+                    return !todo.done
+                });
             default:
-                return todos.length;
+                return todos;
         }
     }
 }
