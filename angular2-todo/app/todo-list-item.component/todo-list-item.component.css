@@ -1,0 +1,6 @@
+.complete-todo {
+    opacity: 0.5;
+}
+.open-todo {
+    opacity: 1;
+}

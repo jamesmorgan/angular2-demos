@@ -29,11 +29,11 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                     switch (filterType[0]) {
                         case 'completed':
                             return todos.filter(function (todo) {
-                                return todo.done;
+                                return todo.done == true;
                             });
                         case 'open':
                             return todos.filter(function (todo) {
-                                return !todo.done;
+                                return todo.done == false;
                             });
                         default:
                             return todos;
