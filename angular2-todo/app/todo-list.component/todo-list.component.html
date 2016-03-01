@@ -1,8 +1,8 @@
 <div class="task-list">
 
-    <li *ngFor="#todo of todoList">
+    <li *ngFor="#todo of todoList; #i = index">
         <div>
-            <todo-list-item [todo]="todo"></todo-list-item>
+            <todo-list-item [todo]="todo" [index]="i"></todo-list-item>
         </div>
     </li>
 

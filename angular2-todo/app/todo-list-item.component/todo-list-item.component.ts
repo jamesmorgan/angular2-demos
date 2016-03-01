@@ -10,15 +10,16 @@ import {TodoService} from "../core/todo.service";
 export class TodoListItemComponent {
 
     @Input() todo:Todo;
+    @Input() index:number;
 
     constructor(private _todoService:TodoService) {
     }
 
     markAsComplete(todo:Todo) {
-        this._todoService.markDone(todo);
+        this._todoService.markDone(todo, this.index);
     }
 
     markAsOpen(todo:Todo) {
-        this._todoService.markIncomplete(todo);
+        this._todoService.markIncomplete(todo, this.index);
     }
 }
