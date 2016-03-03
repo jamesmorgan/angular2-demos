@@ -18,12 +18,11 @@ export class TodoFormComponent {
     }
 
     submit():void {
-        var newTodo = {
+        this._todoService.addTodo({
             todo: this.todo.trim(),
             created: new Date(),
             done: false
-        };
-        this._todoService.addTodo(newTodo);
+        });
         this.clear();
     }
 }

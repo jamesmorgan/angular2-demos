@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from 'angular2/core';
 
 @Pipe({
     name: 'todoCount',
-    pure: true
+    pure: false
 })
 export class TodoCountPipe implements PipeTransform {
 

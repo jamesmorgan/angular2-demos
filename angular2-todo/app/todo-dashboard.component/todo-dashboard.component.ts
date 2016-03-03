@@ -1,5 +1,9 @@
 import {Component, OnInit, OnDestroy} from 'angular2/core';
 import {EventEmitter} from "angular2/core";
+import {Observable} from "rxjs/Observable";
+import {Subscription} from "rxjs/Subscription";
+import {ChangeDetectionStrategy} from "angular2/core";
+import {Output} from "angular2/core";
 
 import {TodoService} from "../core/todo.service";
 import {TodoFormComponent} from '../todo-form.component/todo-form.component';
@@ -10,6 +14,7 @@ import {TodoCountPipe} from "../core/todo-count.pipe/todo-count.pipe";
 import {TodoListItemComponent} from "../todo-list-item.component/todo-list-item.component";
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'my-todo-dashboard',
     templateUrl: 'app/todo-dashboard.component/todo-dashboard.component.html',
     styleUrls: ['app/todo-dashboard.component/todo-dashboard.component.css'],
@@ -18,7 +23,7 @@ import {TodoListItemComponent} from "../todo-list-item.component/todo-list-item.
 })
 export class TodoDashboardComponent implements OnInit, OnDestroy {
 
-    todoList:Todo[];
+    todoList:Todo[] = [];
 
     private _subscription:EventEmitter<Todo[]>;
 

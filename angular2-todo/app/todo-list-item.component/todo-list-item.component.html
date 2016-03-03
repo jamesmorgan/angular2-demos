@@ -1,6 +1,6 @@
 <form [ngClass]="{'open-todo':!todo.done, 'complete-todo':todo.done}">
     <span>{{todo.todo}} - {{todo.created | date:'fullDate'}}</span>
-    <!-- TODO edit? -->
-    <a (click)="markAsComplete(todo)" *ngIf="!todo.done">[Mark Complete]</a>
-    <a (click)="markAsOpen(todo)" *ngIf="todo.done">[Re-Open]</a>
+    <a (click)="markAsComplete()" *ngIf="!todo.done">[Mark Complete]</a>
+    <a (click)="markAsOpen()" *ngIf="todo.done">[Re-Open]</a>
+    <a (click)="edit()" *ngIf="!todo.done">[Edit]</a>
 </form>
