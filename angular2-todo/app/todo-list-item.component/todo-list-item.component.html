@@ -1,6 +1,11 @@
 <form [ngClass]="{'open-todo':!todo.done, 'complete-todo':todo.done}">
-    <span>{{todo.todo}} - {{todo.created | date:'fullDate'}}</span>
+    <span [contentEditable]="!todo.done && edit">{{todo.todo}} </span> - {{todo.created | date:'fullDate'}}
     <a (click)="markAsComplete()" *ngIf="!todo.done">[Mark Complete]</a>
     <a (click)="markAsOpen()" *ngIf="todo.done">[Re-Open]</a>
-    <a (click)="edit()" *ngIf="!todo.done">[Edit]</a>
+
+    <span>
+        <a (click)="edit = !edit" *ngIf="!todo.done && !edit">[Edit]</a>
+        <a (click)="edit = !edit" *ngIf="!todo.done && edit">[Cancel]</a>
+        <span [hidden]="!edit">editing...you can now change the text</span>
+    </span>
 </form>

@@ -13,6 +13,8 @@ export class TodoListItemComponent {
     @Input() todo:Todo;
     @Input() index:number;
 
+    edit:boolean = false;
+
     constructor(private _todoService:TodoService) {
     }
 
@@ -25,7 +27,7 @@ export class TodoListItemComponent {
     }
 
     edit() {
-        // TODO <- edit
+        // TODO edit...?
         console.log('TODO edit', this.todo);
     }
 }
