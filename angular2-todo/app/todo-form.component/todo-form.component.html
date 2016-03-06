@@ -1,3 +1,4 @@
+<h1>todos</h1>
 <form class="task-form" (ngSubmit)="submit()" novalidate>
     <input
             (keyup.escape)="clear()"
@@ -5,8 +6,9 @@
             [(ngModel)]="todo"
             autocomplete="off"
             autofocus
-            class="task-form__input"
-            placeholder="Add a Todo..."
+            class="new-todo"
+            placeholder="What needs to be done?"
             required
-            type="text">
+            type="text"
+            autofocus>
 </form>

@@ -6,13 +6,7 @@ import { TodoDashboardComponent } from '../todo-dashboard.component/todo-dashboa
 
 @Component({
     selector: 'my-app',
-    template: `
-    <h1>{{title}}</h1>
-    <nav>
-        <a [routerLink]="['TodoDashboard']">TodoDashboard</a>
-    </nav>
-    <router-outlet></router-outlet>
-  `,
+    templateUrl: ['app/app.component/app.component.html'],
     styleUrls: ['app/app.component/app.component.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [

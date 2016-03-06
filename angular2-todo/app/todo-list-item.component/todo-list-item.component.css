@@ -1,8 +1,0 @@
-.complete-todo {
-    opacity: 0.5;
-    text-decoration: line-through;
-}
-.open-todo {
-    opacity: 1;
-    font-weight: bold;
-}

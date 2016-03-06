@@ -1,29 +1,53 @@
-<h3>Todo Dashboard</h3>
+<header class="header">
+    <todo-form></todo-form>
+</header>
 
-<div class="g-row">
+<section class="main">
 
-    <div class="g-col">
-        <todo-form></todo-form>
-    </div>
+    <!--<h5>Basic Array Pipe (WORKING)</h5>-->
+    <!--Completed ({{ (todoList | todoCount:'completed').length }}) | Open ({{ (todoList | todoCount:'open').length }})-->
+    <!--<hr/>-->
 
-    <div class="g-col">
+    <!--<h5>Bind to current component component (WORKING)</h5>-->
+    <!--<div class="task-list">-->
+    <!--<li *ngFor="#todo of todoList; #i = index">-->
+    <!--<div>-->
+    <!--<todo-list-item [todo]="todo" [index]="i"></todo-list-item>-->
+    <!--</div>-->
+    <!--</li>-->
+    <!--</div>-->
+    <!--<hr/>-->
 
-        <h5>Basic Array Pipe (WORKING)</h5>
-        Completed ({{ (todoList | todoCount:'completed').length }}) | Open ({{ (todoList | todoCount:'open').length }})
-        <hr/>
+    <input class="toggle-all" type="checkbox">
+    <label for="toggle-all">Mark all as complete</label>
 
-        <h5>Bind to current component component (WORKING)</h5>
-        <div class="task-list">
-            <li *ngFor="#todo of todoList; #i = index">
-                <div>
-                    <todo-list-item [todo]="todo" [index]="i"></todo-list-item>
-                </div>
-            </li>
-        </div>
-        <hr/>
+    <todo-list [(todoList)]="todoList"></todo-list>
 
-        <h5>Bind as property on child (WORKING)</h5>
-        <todo-list [(todoList)]="todoList"></todo-list>
+</section>
+<!-- This footer should hidden by default and shown when there are todos -->
+<footer class="footer">
 
-    </div>
-</div>
+    <span class="todo-count"><strong>{{ (todoList | todoCount:'completed').length }}</strong> completed</span>
+    <span class="todo-count"><strong>{{ (todoList | todoCount:'open').length }}</strong> open</span>
+
+    <!-- Remove this if you don't implement routing -->
+    <ul class="filters">
+        <li>
+            <a class="selected">All</a>
+        </li>
+        <li>
+            <a href="#/active">Active</a>
+        </li>
+        <li>
+            <a href="#/completed">Completed</a>
+        </li>
+    </ul>
+    <!-- Hidden if no completed items are left ↓ -->
+    <button class="clear-completed">Clear completed</button>
+</footer>
+
+<!-- START TEMPLATE -->
+<!-- START TEMPLATE -->
+<!-- START TEMPLATE -->
+<!-- START TEMPLATE -->
+

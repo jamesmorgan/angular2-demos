@@ -1,9 +1,8 @@
-<div class="task-list">
-
-    <li *ngFor="#todo of todoList; #i = index">
+<div class="todo-list">
+    <li *ngFor="#todo of todoList; #i = index"
+        [ngClass]="{'completed':todo.done}">
         <div>
             <todo-list-item [todo]="todo" [index]="i"></todo-list-item>
         </div>
     </li>
-
 </div>

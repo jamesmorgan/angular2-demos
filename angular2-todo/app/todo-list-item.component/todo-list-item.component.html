@@ -1,11 +1,32 @@
-<form [ngClass]="{'open-todo':!todo.done, 'complete-todo':todo.done}">
-    <span [contentEditable]="!todo.done && edit">{{todo.todo}} </span> - {{todo.created | date:'fullDate'}}
-    <a (click)="markAsComplete()" *ngIf="!todo.done">[Mark Complete]</a>
-    <a (click)="markAsOpen()" *ngIf="todo.done">[Re-Open]</a>
+<div class="view">
+    <!--<span [contentEditable]="!todo.done && edit">{{todo.todo}} </span> - {{todo.created | date:'fullDate'}}-->
 
-    <span>
-        <a (click)="edit = !edit" *ngIf="!todo.done && !edit">[Edit]</a>
-        <a (click)="edit = !edit" *ngIf="!todo.done && edit">[Cancel]</a>
-        <span [hidden]="!edit">editing...you can now change the text</span>
-    </span>
-</form>
+    <!--<a (click)="markAsComplete()" *ngIf="!todo.done">[Mark Complete]</a>-->
+    <!--<a (click)="markAsOpen()" *ngIf="todo.done">[Re-Open]</a>-->
+
+    <input class="toggle" type="checkbox" *ngIf="!todo.done" (click)="markAsComplete()">
+    <input class="toggle" type="checkbox" *ngIf="todo.done" checked (click)="markAsOpen()">
+
+    <label [contentEditable]="!todo.done && edit">{{todo.todo}} <small>{{todo.created | date:'fullDate'}}</small></label>
+    <!--<span>-->
+    <!--<a (click)="edit = !edit" *ngIf="!todo.done && !edit">[Edit]</a>-->
+    <!--<a (click)="edit = !edit" *ngIf="!todo.done && edit">[Cancel]</a>-->
+    <!--<span [hidden]="!edit">editing...you can now change the text</span>-->
+    <!--</span>-->
+
+    <button class="destroy"></button>
+</div>
+
+<!--<div class="view">-->
+    <!--<input class="toggle" type="checkbox" checked>-->
+    <!--<label>Taste JavaScript</label>-->
+    <!--<button class="destroy"></button>-->
+<!--</div>-->
+
+<!--<input class="edit" value="Create a TodoMVC template">-->
+<!--<div class="view">-->
+    <!--<input class="toggle" type="checkbox">-->
+    <!--<label>Buy a unicorn</label>-->
+    <!--<button class="destroy"></button>-->
+<!--</div>-->
+<!--<input class="edit" value="Rule the web">-->
