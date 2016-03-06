@@ -27,8 +27,10 @@
 <!-- This footer should hidden by default and shown when there are todos -->
 <footer class="footer">
 
-    <span class="todo-count"><strong>{{ (todoList | todoCount:'completed').length }}</strong> completed</span>
-    <span class="todo-count"><strong>{{ (todoList | todoCount:'open').length }}</strong> open</span>
+    <span class="todo-count">
+        <strong>({{(todoList | todoCount:'completed').length}}/{{(todoList | todoCount:'open').length}})</strong> completed
+    </span>
+    <!--<span class="todo-count"><strong> {{ (todoList | todoCount:'open').length }}</strong> open</span>-->
 
     <!-- Remove this if you don't implement routing -->
     <ul class="filters">
