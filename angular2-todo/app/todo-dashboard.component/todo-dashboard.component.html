@@ -21,7 +21,7 @@
     <input class="toggle-all" type="checkbox">
     <label for="toggle-all">Mark all as complete</label>
 
-    <todo-list [(todoList)]="todoList"></todo-list>
+    <todo-list [(todoList)]="todoList" [(filter)]="filter"></todo-list>
 
 </section>
 <!-- This footer should hidden by default and shown when there are todos -->
@@ -33,13 +33,13 @@
     <!-- Remove this if you don't implement routing -->
     <ul class="filters">
         <li>
-            <a class="selected">All</a>
+            <a [ngClass]="{'selected': !filter || filter === ''}" (click)="filter = ''">All</a>
         </li>
         <li>
-            <a href="#/active">Active</a>
+            <a [ngClass]="{'selected': filter == 'open'}" (click)="filter = 'open'">Active</a>
         </li>
         <li>
-            <a href="#/completed">Completed</a>
+            <a [ngClass]="{'selected': filter == 'completed'}" (click)="filter = 'completed'">Completed</a>
         </li>
     </ul>
     <!-- Hidden if no completed items are left ↓ -->
