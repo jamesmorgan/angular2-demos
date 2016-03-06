@@ -4,35 +4,18 @@
 
 <section class="main">
 
-    <!--<h5>Basic Array Pipe (WORKING)</h5>-->
-    <!--Completed ({{ (todoList | todoCount:'completed').length }}) | Open ({{ (todoList | todoCount:'open').length }})-->
-    <!--<hr/>-->
-
-    <!--<h5>Bind to current component component (WORKING)</h5>-->
-    <!--<div class="task-list">-->
-    <!--<li *ngFor="#todo of todoList; #i = index">-->
-    <!--<div>-->
-    <!--<todo-list-item [todo]="todo" [index]="i"></todo-list-item>-->
-    <!--</div>-->
-    <!--</li>-->
-    <!--</div>-->
-    <!--<hr/>-->
-
     <input class="toggle-all" type="checkbox">
     <label for="toggle-all">Mark all as complete</label>
 
     <todo-list [(todoList)]="todoList" [(filter)]="filter"></todo-list>
 
 </section>
-<!-- This footer should hidden by default and shown when there are todos -->
+
 <footer class="footer">
 
     <span class="todo-count">
         <strong>({{(todoList | todoCount:'completed').length}}/{{(todoList | todoCount:'open').length}})</strong> completed
     </span>
-    <!--<span class="todo-count"><strong> {{ (todoList | todoCount:'open').length }}</strong> open</span>-->
-
-    <!-- Remove this if you don't implement routing -->
     <ul class="filters">
         <li>
             <a [ngClass]="{'selected': !filter || filter === ''}" (click)="filter = ''">All</a>
@@ -44,12 +27,9 @@
             <a [ngClass]="{'selected': filter == 'completed'}" (click)="filter = 'completed'">Completed</a>
         </li>
     </ul>
-    <!-- Hidden if no completed items are left ↓ -->
-    <button class="clear-completed">Clear completed</button>
-</footer>
 
-<!-- START TEMPLATE -->
-<!-- START TEMPLATE -->
-<!-- START TEMPLATE -->
-<!-- START TEMPLATE -->
+    <!-- TODO Hidden if no completed items are left ↓ -->
+    <button class="clear-completed" (click)="clearCompleted()">Clear completed</button>
+
+</footer>
 

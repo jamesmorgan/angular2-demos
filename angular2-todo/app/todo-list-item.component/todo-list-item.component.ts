@@ -26,6 +26,10 @@ export class TodoListItemComponent {
         this._todoService.markIncomplete(this.todo, this.index);
     }
 
+    removeTodo() {
+        this._todoService.deleteTodo(this.todo, this.index);
+    }
+
     edit() {
         // TODO edit...?
         console.log('TODO edit', this.todo);

@@ -12,6 +12,7 @@ import {TodoCountPipe} from "../core/todo-count.pipe/todo-count.pipe";
 
 // This is only required as I also use TodoListItemComponent internally to demonstrate parent -> child binding
 import {TodoListItemComponent} from "../todo-list-item.component/todo-list-item.component";
+import {ChangeDetectorRef} from "angular2/core";
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,9 +28,17 @@ export class TodoDashboardComponent implements OnInit, OnDestroy {
 
     private _subscription:EventEmitter<Todo[]>;
 
-    constructor(private _todoService:TodoService) {
+    constructor(private _ref:ChangeDetectorRef,
+                private _todoService:TodoService) {
         this._subscription = this._todoService.todoListChange.subscribe(() => this.getTodoList());
     }
+
+    clearCompleted() {
+        // TODO not working....?
+        this._todoService.clearCompleted();
+        this._ref.detectChanges();
+    }
+
 
     ngOnDestroy() {
         console.log('Calling ngOnDestroy()');

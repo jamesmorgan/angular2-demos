@@ -13,8 +13,14 @@ export class TodoService {
     todoList:Todo[] = TODOS;
     todoListChange = new EventEmitter<Todo[]>();
 
-
     public constructor() {
+        this.todoListChange.emit(this.todoList);
+    }
+
+    public clearCompleted():void {
+        this.todoList = this.todoList.filter(function (todo) {
+            return !todo.done;
+        });
         this.todoListChange.emit(this.todoList);
     }
 
