@@ -1,8 +1,8 @@
-import { Component } from 'angular2/core';
-import { RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS } from 'angular2/router';
+import {Component} from 'angular2/core';
+import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 
 import {TodoService} from "../core/todo.service";
-import { TodoDashboardComponent } from '../todo-dashboard.component/todo-dashboard.component';
+import {TodoDashboardComponent} from '../todo-dashboard.component/todo-dashboard.component';
 
 @Component({
     selector: 'my-app',

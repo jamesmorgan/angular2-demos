@@ -13,9 +13,10 @@ import {TodoCountPipe} from "../core/todo-count.pipe/todo-count.pipe";
 // This is only required as I also use TodoListItemComponent internally to demonstrate parent -> child binding
 import {TodoListItemComponent} from "../todo-list-item.component/todo-list-item.component";
 import {ChangeDetectorRef} from "angular2/core";
+import {ViewEncapsulation} from "angular2/core";
 
 @Component({
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    //changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'my-todo-dashboard',
     templateUrl: 'app/todo-dashboard.component/todo-dashboard.component.html',
     styleUrls: ['app/todo-dashboard.component/todo-dashboard.component.css'],
@@ -25,33 +26,34 @@ import {ChangeDetectorRef} from "angular2/core";
 export class TodoDashboardComponent implements OnInit, OnDestroy {
 
     todoList:Todo[] = [];
+    toggleAll:boolean = false;
 
     private _subscription:EventEmitter<Todo[]>;
 
-    constructor(private _ref:ChangeDetectorRef,
-                private _todoService:TodoService) {
-        this._subscription = this._todoService.todoListChange.subscribe(() => this.getTodoList());
+    constructor(private _todoService:TodoService) {
+        this._subscription = this._todoService.todoListChange.subscribe((data) => this.todoList = data);
     }
 
-    clearCompleted() {
-        // TODO not working....?
-        this._todoService.clearCompleted();
-        this._ref.detectChanges();
+    ngOnInit() {
+        console.log('Calling ngOnInit()');
+        this.todoList = this._todoService.todoList;
     }
-
 
     ngOnDestroy() {
         console.log('Calling ngOnDestroy()');
         this._subscription.unsubscribe();
     }
 
-    ngOnInit() {
-        console.log('Calling ngOnInit()');
-        this.getTodoList();
+    clearCompleted() {
+        console.log('Calling clearCompleted()');
+        this._todoService.clearCompleted();
     }
 
-    getTodoList() {
-        console.log('Calling getTodoList()', this._todoService.todoList);
-        this.todoList = this._todoService.todoList;
+    markAllAsComplete() {
+        console.log('Calling markAllAsComplete()', this.toggleAll);
+        this._todoService.markAllAsComplete(!this.toggleAll);
+        this.toggleAll = !this.toggleAll;
     }
+
+
 }

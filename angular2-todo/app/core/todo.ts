@@ -6,5 +6,4 @@ interface Todo {
     done: Boolean;
     created: Date;
     key?: string; // optional
-
 }

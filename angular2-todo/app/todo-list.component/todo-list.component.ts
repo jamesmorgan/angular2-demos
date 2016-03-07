@@ -8,16 +8,16 @@ import {TodoFilterPipe} from "../core/todo-filter.pipe/todo-filter.pipe";
     selector: 'todo-list',
     templateUrl: 'app/todo-list.component/todo-list.component.html',
     styleUrls: ['app/todo-list.component/todo-list.component.css'],
-    directives: [TodoListItemComponent]
+    directives: [TodoListItemComponent],
     pipes: [TodoFilterPipe],
 })
-export class TodoListComponent implements OnInit{
+export class TodoListComponent implements OnInit {
 
     @Input() todoList:Todo[];
     @Input() filter:string;
 
     ngOnInit():any {
-        this.filter ='';
+        this.filter = '';
     }
 
     constructor() {

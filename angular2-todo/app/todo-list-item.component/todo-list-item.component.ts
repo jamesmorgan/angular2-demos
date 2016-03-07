@@ -1,7 +1,13 @@
 import { ChangeDetectionStrategy, Component, Input } from 'angular2/core';
 import {TodoService} from "../core/todo.service";
+import {EventEmitter} from "angular2/core";
+import {Output} from "angular2/core";
 
 @Component({
+    /**
+     * When using OnPush detectors, then the framework will check an OnPush component when
+     * any of its input properties changes, when it fires an event, or when an observable fires an event
+     */
     //changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'todo-list-item',
     templateUrl: 'app/todo-list-item.component/todo-list-item.component.html',
@@ -31,7 +37,6 @@ export class TodoListItemComponent {
     }
 
     edit() {
-        // TODO edit...?
         console.log('TODO edit', this.todo);
     }
 }

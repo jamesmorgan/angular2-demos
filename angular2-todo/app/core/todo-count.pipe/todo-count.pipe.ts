@@ -7,7 +7,6 @@ import { Pipe, PipeTransform } from 'angular2/core';
 export class TodoCountPipe implements PipeTransform {
 
     transform(todos:Todo[], filterType?:string[]) {
-        console.log('pipe', todos);
         if (!todos || !filterType) {
             return todos;
         }

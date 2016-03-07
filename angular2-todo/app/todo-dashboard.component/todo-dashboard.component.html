@@ -4,10 +4,12 @@
 
 <section class="main">
 
-    <input class="toggle-all" type="checkbox">
     <label for="toggle-all">Mark all as complete</label>
+    <input class="toggle-all" id="toggle-all" type="checkbox"
+           [(ngModel)]="toggleAll"
+           (change)="markAllAsComplete()">
 
-    <todo-list [(todoList)]="todoList" [(filter)]="filter"></todo-list>
+    <todo-list [todoList]="todoList" [filter]="filter"></todo-list>
 
 </section>
 
@@ -28,8 +30,10 @@
         </li>
     </ul>
 
-    <!-- TODO Hidden if no completed items are left ↓ -->
-    <button class="clear-completed" (click)="clearCompleted()">Clear completed</button>
+    <button class="clear-completed"
+            [hidden]="(todoList | todoCount:'completed').length === 0"
+            (click)="clearCompleted()">Clear completed
+    </button>
 
 </footer>
 

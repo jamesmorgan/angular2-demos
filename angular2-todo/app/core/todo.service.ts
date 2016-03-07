@@ -22,27 +22,37 @@ export class TodoService {
             return !todo.done;
         });
         this.todoListChange.emit(this.todoList);
+        console.log('clearCompleted() finished', this.todoList);
+    }
+
+    public markAllAsComplete(toggleAll):void {
+        console.log('clearCompleted()', toggleAll);
+        this.todoList.forEach(function (todo) {
+            todo.done = toggleAll;
+        });
     }
 
     public addTodo(todo:Todo) {
-        console.log('Adding todo', todo);
+        console.log('addTodo()', todo);
         this.todoList.push(todo);
         this.todoListChange.emit(this.todoList);
     }
 
     public deleteTodo(todo:Todo, index:number) {
-        console.log('Deleting todo at index', index);
+        console.log('deleteTodo()', todo, index);
         this.todoList.splice(index, 1);
         this.todoListChange.emit(this.todoList);
     }
 
     public markDone(todo:Todo, index:number):void {
+        console.log('markDone()', todo, index);
         todo.done = true;
         this.todoList[index].done = true;
         this.todoListChange.emit(this.todoList);
     }
 
     public markIncomplete(todo:Todo, index:number):void {
+        console.log('markIncomplete()', todo, index);
         todo.done = false;
         this.todoList[index].done = false;
         this.todoListChange.emit(this.todoList);
