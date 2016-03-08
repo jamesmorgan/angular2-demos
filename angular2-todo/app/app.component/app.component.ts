@@ -3,10 +3,11 @@ import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router'
 
 import {TodoService} from "../core/todo.service";
 import {TodoDashboardComponent} from '../todo-dashboard.component/todo-dashboard.component';
+import {AboutMeComponent} from "../about-me.component/about-me.component";
 
 @Component({
     selector: 'my-app',
-    templateUrl: ['app/app.component/app.component.html'],
+    templateUrl: 'app/app.component/app.component.html',
     styleUrls: ['app/app.component/app.component.css'],
     directives: [ROUTER_DIRECTIVES],
     providers: [
@@ -14,23 +15,14 @@ import {TodoDashboardComponent} from '../todo-dashboard.component/todo-dashboard
         TodoService
     ]
 })
-// TODO add about page & link as example of using the router
 @RouteConfig([
     {
         path: '/todos', name: 'TodoDashboard', component: TodoDashboardComponent,
         useAsDefault: true
+    },
+    {
+        path: '/about', name: 'About', component: AboutMeComponent
     }
-    //{
-    //    path: '/detail/:id',
-    //    name: 'HeroDetail',
-    //    component: HeroDetailComponent
-    //}
-    //{
-    //    path: '/about',
-    //    name: 'About',
-    //    component: AboutComponent
-    //}
 ])
 export class AppComponent {
-    title = 'Angular2 TODO\'s';
 }
