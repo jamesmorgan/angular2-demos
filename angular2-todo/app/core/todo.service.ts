@@ -9,8 +9,9 @@ import {TODOS} from "./mock-todos";
 @Injectable()
 export class TodoService {
 
-    // EVENT BASED
     todoList:Todo[] = TODOS;
+
+    // TODO ditch this event emitter as I dont think its needed!
     todoListChange = new EventEmitter<Todo[]>();
 
     public constructor() {

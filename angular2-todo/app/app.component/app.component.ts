@@ -14,6 +14,7 @@ import {TodoDashboardComponent} from '../todo-dashboard.component/todo-dashboard
         TodoService
     ]
 })
+// TODO add about page & link as example of using the router
 @RouteConfig([
     {
         path: '/todos', name: 'TodoDashboard', component: TodoDashboardComponent,

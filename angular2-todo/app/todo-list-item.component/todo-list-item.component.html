@@ -5,7 +5,6 @@
     <input class="toggle" type="checkbox" *ngIf="todo.done" checked (click)="markAsOpen()">
 
     <!-- TODO Edit? -->
-    <!--<span [hidden]="!edit">editing...you can now change the text</span>-->
     <label [contentEditable]="!todo.done && edit">{{todo.todo}} <small>{{todo.created | date:'fullDate'}}</small></label>
 
     <button class="destroy" (click)="removeTodo(todo)"></button>

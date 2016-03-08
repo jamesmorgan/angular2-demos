@@ -5,6 +5,9 @@ import { Pipe, PipeTransform } from 'angular2/core';
     pure: true
 })
 export class TodoFilterPipe implements PipeTransform {
+
+    // TODO move duplicate logic to service or utility class?
+
     transform(todos:Todo[], filterType?:string[]) {
         if (!todos || !filterType) {
             return todos;
