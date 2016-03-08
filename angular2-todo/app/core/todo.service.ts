@@ -1,6 +1,4 @@
 import {Injectable} from "angular2/core";
-import {Subject}    from 'rxjs/Subject';
-
 import {EventEmitter} from "angular2/core";
 
 import {Todo} from "./todo";
@@ -10,8 +8,6 @@ import {TODOS} from "./mock-todos";
 export class TodoService {
 
     todoList:Todo[] = TODOS;
-
-    // TODO ditch this event emitter as I dont think its needed!
     todoListChange = new EventEmitter<Todo[]>();
 
     public constructor() {

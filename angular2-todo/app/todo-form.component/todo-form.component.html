@@ -1,6 +1,5 @@
 <h1>todos</h1>
-<!-- TODO form validation -->
-<form class="task-form" (ngSubmit)="submit()" novalidate>
+<form class="task-form" (ngSubmit)="submit()" #todoForm="ngForm" novalidate>
     <input
             (keyup.escape)="clear()"
             ngControl="todo"

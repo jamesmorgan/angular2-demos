@@ -1,12 +1,14 @@
 import { Pipe, PipeTransform } from 'angular2/core';
+import {TodoService} from "../todo.service";
 
 @Pipe({
     name: 'todosFilter',
-    pure: true
+    /**
+     * Setting this to false prevents the filter from re-applying any changes to the Todo[] list
+     */
+    pure: false
 })
 export class TodoFilterPipe implements PipeTransform {
-
-    // TODO move duplicate logic to service or utility class?
 
     transform(todos:Todo[], filterType?:string[]) {
         if (!todos || !filterType) {
