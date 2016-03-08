@@ -14,26 +14,8 @@
 </section>
 
 <footer class="footer">
-
-    <span class="todo-count">
-        <strong>({{(todoList | todoCount:'completed').length}}/{{(todoList | todoCount:'open').length}})</strong> completed
-    </span>
-    <ul class="filters">
-        <li>
-            <a [ngClass]="{'selected': !filter || filter === ''}" (click)="filter = ''">All</a>
-        </li>
-        <li>
-            <a [ngClass]="{'selected': filter == 'open'}" (click)="filter = 'open'">Active</a>
-        </li>
-        <li>
-            <a [ngClass]="{'selected': filter == 'completed'}" (click)="filter = 'completed'">Completed</a>
-        </li>
-    </ul>
-
-    <button class="clear-completed"
-            [hidden]="(todoList | todoCount:'completed').length === 0"
-            (click)="clearCompleted()">Clear completed
-    </button>
-
+    <!-- TODO is this the best way of passing the filter from [todo-button-bar] to [todo-list]  -->
+    <todo-button-bar [todoList]="todoList"
+                     (filterChanged)="onFilterChanged($event)"></todo-button-bar>
 </footer>
 

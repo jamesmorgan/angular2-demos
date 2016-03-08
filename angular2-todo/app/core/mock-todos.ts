@@ -1,7 +1,7 @@
 import {Todo} from './todo';
 
 export var TODOS:Todo[] = [
-    {todo: 'The first Todo', created: new Date(), done: false},
-    {todo: 'Another Todo', created: new Date(), done: false},
-    {todo: 'The Final mock Todo', created: new Date(), done: false}
+    {todo: 'The first todo', created: new Date(), done: false},
+    {todo: 'Another todo', created: new Date(), done: true},
+    {todo: 'The final mock todo', created: new Date(), done: false}
 ];

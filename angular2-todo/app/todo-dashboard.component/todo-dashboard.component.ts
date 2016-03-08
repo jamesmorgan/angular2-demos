@@ -14,19 +14,20 @@ import {TodoCountPipe} from "../core/todo-count.pipe/todo-count.pipe";
 import {TodoListItemComponent} from "../todo-list-item.component/todo-list-item.component";
 import {ChangeDetectorRef} from "angular2/core";
 import {ViewEncapsulation} from "angular2/core";
+import {TodoButtonBarComponent} from "../todo-button-bar.component/todo-button-bar.component";
 
 @Component({
-    //changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'my-todo-dashboard',
     templateUrl: 'app/todo-dashboard.component/todo-dashboard.component.html',
     styleUrls: ['app/todo-dashboard.component/todo-dashboard.component.css'],
-    pipes: [TodoCountPipe],
-    directives: [TodoFormComponent, TodoListComponent, TodoListItemComponent]
+    pipes: [],
+    directives: [TodoFormComponent, TodoListComponent, TodoButtonBarComponent]
 })
 export class TodoDashboardComponent implements OnInit, OnDestroy {
 
     todoList:Todo[] = [];
     toggleAll:boolean = false;
+    filter:string = '';
 
     private _subscription:EventEmitter<Todo[]>;
 
@@ -44,9 +45,9 @@ export class TodoDashboardComponent implements OnInit, OnDestroy {
         this._subscription.unsubscribe();
     }
 
-    clearCompleted() {
-        console.log('Calling clearCompleted()');
-        this._todoService.clearCompleted();
+    onFilterChanged($event) {
+        console.log('Calling onFilterChanged()', $event);
+        this.filter = $event;
     }
 
     markAllAsComplete() {

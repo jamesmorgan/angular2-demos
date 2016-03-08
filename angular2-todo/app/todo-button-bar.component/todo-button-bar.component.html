@@ -1,0 +1,20 @@
+<span class="todo-count">
+    <strong>({{(todoList | todoCount:'completed').length}}/{{(todoList | todoCount:'open').length}})</strong> completed
+</span>
+
+<ul class="filters">
+    <li>
+        <a [ngClass]="{'selected': !filter || filter === ''}" (click)="changeFilter('')">All</a>
+    </li>
+    <li>
+        <a [ngClass]="{'selected': filter == 'open'}" (click)="changeFilter('open')">Active</a>
+    </li>
+    <li>
+        <a [ngClass]="{'selected': filter == 'completed'}" (click)="changeFilter('completed')">Completed</a>
+    </li>
+</ul>
+
+<button class="clear-completed"
+        [hidden]="(todoList | todoCount:'completed').length === 0"
+        (click)="clearCompleted()">Clear completed
+</button>
