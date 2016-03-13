@@ -1,0 +1,7 @@
+*.iml
+.idea/
+node_modules
+typings
+package.json
+*.js.map
+*.js

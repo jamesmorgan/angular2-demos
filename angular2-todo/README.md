@@ -4,7 +4,7 @@ Angular2 TodoMVC
 ![angular2-todo.png](../angular2-todo.png)
 
 #### Whats inside
-* Basic working TodoMVC style app (with tweaks)
+* Basic working TodoMVC style app (with tweaks) see [link](https://github.com/tastejs/todomvc-app-template)
 * Page router
 * Event propagation
 * Two way binding

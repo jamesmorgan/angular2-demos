@@ -1,0 +1,50 @@
+<header class="header">
+    <form class="log-form" #todoForm="ngForm" novalidate>
+        <input (keyup.escape)="clear()"
+               ngControl="message"
+               [(ngModel)]="message"
+               autocomplete="off"
+               autofocus
+               class="new-todo"
+               placeholder="Type a log message..."
+               required
+               type="text">
+    </form>
+</header>
+
+<section class="main">
+    <ul class="filters">
+        <li>
+            <a (click)="assert()">Assert</a>
+        </li>
+        <li>
+            <a (click)="log()">Log</a>
+        </li>
+        <li>
+            <a (click)="trace()">Trace</a>
+        </li>
+        <li>
+            <a (click)="debug()">Debug</a>
+        </li>
+        <li>
+            <a (click)="debug()">Info</a>
+        </li>
+        <li>
+            <a (click)="trace()">Trace</a>
+        </li>
+        <li>
+            <a (click)="warn()">Warn</a>
+        </li>
+        <li>
+            <a (click)="error()">Error</a>
+        </li>
+        <li>
+            <a (click)="throwException()">Exception!</a>
+        </li>
+    </ul>
+</section>
+
+<footer class="footer">
+    Open your console to see the log messages
+</footer>
+

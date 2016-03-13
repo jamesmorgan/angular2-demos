@@ -1,0 +1,18 @@
+<header class="header">
+    <h1>about</h1>
+</header>
+
+<section>
+
+    <div class="todo-list">
+        <li *ngFor="#link of links" class="view">
+            <div class="view">
+                <label>
+                    <a href="{{link.link}}" target="_blank">{{link.title}}</a>
+                    <small>{{link.description}}</small>
+                </label>
+            </div>
+        </li>
+    </div>
+
+</section>
