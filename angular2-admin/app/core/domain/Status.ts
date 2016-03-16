@@ -5,4 +5,8 @@ export class Status {
     constructor(status:String) {
         this.status = status;
     }
+
+    toString():String {
+        return this.status;
+    }
 }

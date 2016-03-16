@@ -1,3 +1,32 @@
+<h4>CompetitionsListComponent</h4>
 
-
-CompetitionsListComponent
+<div>
+    <li *ngFor="#comp of competitions">
+        <div>
+            <div>
+                <span>
+                    <strong>{{comp.name}}</strong> - {{comp.shortName}} <small>{{comp._id}}</small>
+                </span>
+            </div>
+            <div>
+                <strong>{{comp.game}}</strong>
+                <span>{{comp.description}}</span>
+            </div>
+            <div>
+                <span><strong>Updated:</strong> {{comp.updated}}</span>
+                <span><strong>Started:</strong> {{comp.startDate}}</span>
+            </div>
+            <div>
+                <span>Status: {{comp.status}}</span>
+            </div>
+            <div>
+                <span>Order: {{comp.order}}</span>
+            </div>
+            <div>
+                <span>Image: {{comp.image}}</span>
+            </div>
+            <selections-list [selections]="comp.selections"></selections-list>
+        </div>
+        <hr/>
+    </li>
+</div>

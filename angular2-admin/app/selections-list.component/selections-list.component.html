@@ -1,0 +1,13 @@
+<div>
+
+    <div *ngIf="selections === null || selections.length <= 0">
+        <strong>No selection for this competitions...!</strong>
+    </div>
+
+    <li *ngFor="#selection of selections">
+        <div>
+            <selection-item [selection]="selection"></selection-item>
+        </div>
+        <hr/>
+    </li>
+</div>
