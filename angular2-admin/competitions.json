@@ -1,0 +1,134 @@
+{
+  "_id": "56a52965d4c622243710639e",
+  "name": "Valspar",
+  "game": "560986b1268059cb287b035b",
+  "description": "PGA Valspar",
+  "shortName": "snakepit",
+  "updated": 1457696901,
+  "start": 1456259469,
+  "selections": [
+    {
+      "selection": "551d378ab6064a4f46f9fd0d",
+      "potIndex": 0,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": 0,
+      "selectionName": "Jordan Spieth"
+    },
+    {
+      "selection": "551d378ab6064a4f46f9fd13",
+      "potIndex": 0,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": -7,
+      "selectionName": "Patrick Reed"
+    },
+    {
+      "selection": "551d378ab6064a4f46f9fd03",
+      "potIndex": 0,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": -6,
+      "selectionName": "Justin Thomas"
+    },
+    {
+      "selection": "552003f896e611778ab7d89f",
+      "potIndex": 0,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": -6,
+      "selectionName": "Kevin Na"
+    },
+    {
+      "selection": "551d378ab6064a4f46f9fd52",
+      "potIndex": 0,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": 1,
+      "selectionName": "Matt Kuchar"
+    },
+    {
+      "selection": "551d378ab6064a4f46f9fd5a",
+      "potIndex": 1,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": -9,
+      "selectionName": "Martin Kaymer"
+    },
+    {
+      "selection": "552003fc96e611778ab7d8bd",
+      "potIndex": 1,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": 0,
+      "selectionName": "Graeme McDowell"
+    },
+    {
+      "selection": "551d378ab6064a4f46f9fcfd",
+      "potIndex": 1,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": -4,
+      "selectionName": "Danny Willett"
+    },
+    {
+      "selection": "552003f896e611778ab7d89c",
+      "potIndex": 1,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": -5,
+      "selectionName": "Henrik Stenson"
+    },
+    {
+      "selection": "552003fb96e611778ab7d8b5",
+      "potIndex": 1,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": -3,
+      "selectionName": "Ian Poulter"
+    },
+    {
+      "selection": "5521ba71bcfae4de67b07e59",
+      "potIndex": 2,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": 0,
+      "selectionName": "Camilo Villegas"
+    },
+    {
+      "selection": "551d378ab6064a4f46f9fcfa",
+      "potIndex": 2,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": -9,
+      "selectionName": "Danny Lee"
+    },
+    {
+      "selection": "552003fb96e611778ab7d8ba",
+      "potIndex": 2,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": 1,
+      "selectionName": "Branden Grace"
+    },
+    {
+      "selection": "551d378ab6064a4f46f9fd12",
+      "potIndex": 2,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": 0,
+      "selectionName": "Charl Schwartzel"
+    },
+    {
+      "selection": "551d378ab6064a4f46f9fd1b",
+      "potIndex": 2,
+      "multiplier": 1,
+      "handicap": 0,
+      "score": -4,
+      "selectionName": "Louis Oosthuizen"
+    }
+  ],
+  "status": "inplay",
+  "order": true,
+  "image": ""
+}
