@@ -30,10 +30,9 @@ export class AdminDashboardComponent implements OnDestroy, OnInit {
     constructor(private _competitionsService:CompetitionsService) {
 
         // Get a handle on the event emitter to react on the changes
-        this._competitionsEventHandler =
-            this._competitionsService.onCompetitionsChanged.subscribe((competitions) => {
-                this.competitions = competitions;
-            });
+        this._competitionsEventHandler = this._competitionsService.onCompetitionsChanged.subscribe((competitions) => {
+            this.competitions = competitions;
+        });
 
         // Subscribe an changes which may happen
         this._competitionsSubscription = this._competitionsService.competitionsChanged$.subscribe((competitions) => {

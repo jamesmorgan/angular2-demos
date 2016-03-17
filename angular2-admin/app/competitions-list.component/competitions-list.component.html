@@ -17,7 +17,7 @@
                 <span><strong>Started:</strong> {{comp.startDate}}</span>
             </div>
             <div>
-                <span>Status: {{comp.status}}</span>
+                <competition-status [competition]="comp"></competition-status>
             </div>
             <div>
                 <span>Order: {{comp.order}}</span>
