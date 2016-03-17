@@ -8,6 +8,7 @@ import {Competition} from "../domain/Competition";
 import {Subject} from "rxjs/Subject";
 import {Status} from "../domain/Status";
 import {ID} from "../domain/ID";
+import {RequestOptionsArgs} from "angular2/http";
 
 @Injectable()
 export class CompetitionsService {
@@ -27,9 +28,9 @@ export class CompetitionsService {
     /** Public Observer  **/
     competitionsChanged$ = this._competitionsSource.asObservable().share(); // share() = This will allow multiple Subscribers to one Observable
 
-    constructor(http:Http) {
+    constructor(private _http:Http) {
         // Get the data on creation
-        http.get('http://localhost:8080/competitions')
+        _http.get('http://localhost:8080/competitions')
             .subscribe(
                 data => {
                     this.parseCompetitions(data.json());
@@ -61,7 +62,27 @@ export class CompetitionsService {
         var compIdx = this.competitions.findIndex((comp:Competition) => {
             return comp._id == compId;
         });
-        this.competitions[compIdx].status = status;
-        this.publishToObservers();
+
+        if (compId) {
+            var payload = {
+                status: status
+            };
+            this._http.put('http://localhost:8080/competition/status/' + compId.toString(), JSON.stringify(payload))
+                // FIXME -> toPromise() should have worked, fallen back to subscribe...
+                //.toPromise()
+                //.then((res) => {
+                //    console.error('Successfully saved status', res);
+                //    this.competitions[compIdx].status = status;
+                //    this.publishToObservers();
+                //})
+                //.catch((err) => {
+                //    console.error('Unable to set status', err);
+                //})
+                .subscribe((res) => {
+                    console.info('Attempted saved status', res);
+                    this.competitions[compIdx].status = status;
+                    this.publishToObservers();
+                });
+        }
     }
 }
