@@ -1,15 +1,17 @@
 export class Status {
 
     static OPEN = new Status('open');
-    static POST_MATCH = new Status('post_match');
-    static PRE_MATCH = new Status('pre_match');
-    static IN_PLAY = new Status('in_play');
+    static PENDING = new Status('pending');
+    static IN_PLAY = new Status('inplay');
+    static CLOSED = new Status('closed');
+    static ARCHIVE = new Status('archive');
 
     static Statuses = [
         Status.OPEN,
+        Status.PENDING,
         Status.IN_PLAY,
-        Status.PRE_MATCH,
-        Status.POST_MATCH
+        Status.CLOSED,
+        Status.ARCHIVE
     ];
 
     value:String;
