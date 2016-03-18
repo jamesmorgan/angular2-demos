@@ -2,7 +2,9 @@ import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
 
 import {AdminDashboardComponent} from "../admin-dashboard.component/admin-dashboard.component";
+
 import {CompetitionsService} from "../core/services/CompetitionsService";
+import {UsersService} from "../core/services/UsersService";
 
 @Component({
     selector: 'my-app',
@@ -11,7 +13,8 @@ import {CompetitionsService} from "../core/services/CompetitionsService";
     directives: [ROUTER_DIRECTIVES],
     providers: [
         ROUTER_PROVIDERS,
-        CompetitionsService
+        CompetitionsService,
+        UsersService
     ],
 })
 @RouteConfig([
