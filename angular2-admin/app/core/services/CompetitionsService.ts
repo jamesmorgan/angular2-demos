@@ -78,11 +78,14 @@ export class CompetitionsService {
                 //.catch((err) => {
                 //    console.error('Unable to set status', err);
                 //})
-                .subscribe((res) => {
-                    console.info('Attempted saved status', res);
-                    this.competitions[compIdx].status = status;
-                    this.publishToObservers();
-                });
+                .subscribe(
+                    res => {
+                        console.info('Successfully updated status', res);
+                        this.competitions[compIdx].status = status;
+                        this.publishToObservers();
+                    },
+                    err => console.error('Failed to update status', err)
+                );
         }
     }
 }
