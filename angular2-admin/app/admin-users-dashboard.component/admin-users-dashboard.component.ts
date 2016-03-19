@@ -4,13 +4,14 @@ import {UsersService} from "../core/services/UsersService";
 import {OnDestroy} from "angular2/core";
 import {OnInit} from "angular2/core";
 import {Subscription} from "rxjs/Subscription";
+import {UsersListComponent} from "../users-list.component/users-list.component";
 
 @Component({
-    selector: 'admin-dashboard',
+    selector: 'admin-users-dashboard',
     templateUrl: 'app/admin-users-dashboard.component/admin-users-dashboard.component.html',
     styleUrls: ['app/admin-users-dashboard.component/admin-users-dashboard.component.css'],
     directives: [
-
+        UsersListComponent
     ]
 })
 export class AdminUsersDashboardComponent implements OnDestroy, OnInit {
