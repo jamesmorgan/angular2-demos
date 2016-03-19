@@ -1,14 +1,17 @@
 import {Injectable, EventEmitter} from "angular2/core";
 import {Http} from "angular2/http";
-import {Observable} from 'rxjs/Observable';
-import {Observer} from "rxjs/Observer";
-import 'rxjs/add/operator/share';
-
 import {Competition} from "../domain/Competition";
 import {Subject} from "rxjs/Subject";
 import {Status} from "../domain/Status";
 import {ID} from "../domain/ID";
-import {RequestOptionsArgs} from "angular2/http";
+import "rxjs/Rx";
+import {Observable} from "rxjs/Observable";
+
+// import 'rxjs/add/operator/share';
+// import 'rxjs/add/operator/map';
+// import 'rxjs/operator/delay';
+// import 'rxjs/operator/mergeMap';
+// import 'rxjs/operator/switchMap';
 
 @Injectable()
 export class CompetitionsService {
@@ -23,17 +26,18 @@ export class CompetitionsService {
     onCompetitionsChanged = new EventEmitter<Competition[]>(true);
 
     /** Private Observable **/
-    private _competitionsSource:Subject = new Subject<Competition[]>();
+    private _competitionsSource:Subject<Competition[]> = new Subject<Competition[]>();
 
     /** Public Observer  **/
-    competitionsChanged$ = this._competitionsSource.asObservable().share(); // share() = This will allow multiple Subscribers to one Observable
+    competitionsChanged$:Observable<Competition[]> = this._competitionsSource.asObservable().share(); // share() = This will allow multiple Subscribers to one Observable
 
     constructor(private _http:Http) {
         // Get the data on creation
         _http.get('http://localhost:8080/competitions')
+            .map(res => res.json())
             .subscribe(
                 data => {
-                    this.parseCompetitions(data.json());
+                    this.parseCompetitions(data);
                     this.triggerCompetitionsChanged();
                     this.publishToObservers();
                 },

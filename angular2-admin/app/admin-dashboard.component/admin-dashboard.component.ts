@@ -1,10 +1,7 @@
-import {Component} from 'angular2/core';
+import {Component, EventEmitter, OnDestroy, OnInit} from "angular2/core";
 import {CompetitionsListComponent} from "../competitions-list.component/competitions-list.component";
 import {Competition} from "../core/domain/Competition";
-import {EventEmitter} from "angular2/core";
 import {CompetitionsService} from "../core/services/CompetitionsService";
-import {OnDestroy} from "angular2/core";
-import {OnInit} from "angular2/core";
 import {Subscription} from "rxjs/Subscription";
 
 @Component({
@@ -28,7 +25,6 @@ export class AdminDashboardComponent implements OnDestroy, OnInit {
     private _competitionsSubscription:Subscription;
 
     constructor(private _competitionsService:CompetitionsService) {
-
         // Get a handle on the event emitter to react on the changes
         this._competitionsEventHandler = this._competitionsService.onCompetitionsChanged.subscribe((competitions) => {
             this.competitions = competitions;
@@ -37,7 +33,7 @@ export class AdminDashboardComponent implements OnDestroy, OnInit {
         // Subscribe an changes which may happen
         this._competitionsSubscription = this._competitionsService.competitionsChanged$.subscribe((competitions) => {
             this.competitionsObservable = competitions;
-        })
+        });
     }
 
     ngOnInit():any {
