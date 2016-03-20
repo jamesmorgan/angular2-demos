@@ -1,12 +1,12 @@
 import {Injectable, EventEmitter} from "angular2/core";
-import {Http} from "angular2/http";
+import {Http, Headers} from "angular2/http";
+import {Observable} from "rxjs/Observable";
 import {Competition} from "../domain/Competition";
 import {Subject} from "rxjs/Subject";
 import {Status} from "../domain/Status";
 import {ID} from "../domain/ID";
+import "rxjs/add/operator/share";
 import "rxjs/Rx";
-import {Observable} from "rxjs/Observable";
-
 // import 'rxjs/add/operator/share';
 // import 'rxjs/add/operator/map';
 // import 'rxjs/operator/delay';
@@ -68,10 +68,18 @@ export class CompetitionsService {
         });
 
         if (compId) {
+
+            var headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+
             var payload = {
                 status: status
             };
-            this._http.put('http://localhost:8080/competition/status/' + compId.toString(), JSON.stringify(payload))
+
+
+            this._http.put('http://localhost:8080/competition/status/' + compId.toString(), JSON.stringify(payload), {
+                    headers: headers
+                })
                 // FIXME -> toPromise() should have worked, fallen back to subscribe...
                 //.toPromise()
                 //.then((res) => {
