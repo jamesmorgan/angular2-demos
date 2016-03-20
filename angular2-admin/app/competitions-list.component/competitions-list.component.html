@@ -1,32 +1,34 @@
 <h4>CompetitionsListComponent</h4>
 
 <div>
-    <li *ngFor="#comp of competitions">
-        <div>
+    <ul>
+        <li *ngFor="#comp of competitions">
             <div>
-                <span>
-                    <strong>{{comp.name}}</strong> - {{comp.shortName}} <small>{{comp._id}}</small>
-                </span>
+                <div>
+                    <span>
+                        <strong>{{comp.name}}</strong> - {{comp.shortName}} <small>{{comp._id}}</small>
+                    </span>
+                </div>
+                <div>
+                    <strong>{{comp.game}}</strong>
+                    <span>{{comp.description}}</span>
+                </div>
+                <div>
+                    <span><strong>Updated:</strong> {{comp.updated}}</span>
+                    <span><strong>Started:</strong> {{comp.startDate}}</span>
+                </div>
+                <div>
+                    <competition-status [competition]="comp"></competition-status>
+                </div>
+                <div>
+                    <span>Order: {{comp.order}}</span>
+                </div>
+                <div>
+                    <span>Image: {{comp.image}}</span>
+                </div>
+                <selections-list [selections]="comp.selections"></selections-list>
             </div>
-            <div>
-                <strong>{{comp.game}}</strong>
-                <span>{{comp.description}}</span>
-            </div>
-            <div>
-                <span><strong>Updated:</strong> {{comp.updated}}</span>
-                <span><strong>Started:</strong> {{comp.startDate}}</span>
-            </div>
-            <div>
-                <competition-status [competition]="comp"></competition-status>
-            </div>
-            <div>
-                <span>Order: {{comp.order}}</span>
-            </div>
-            <div>
-                <span>Image: {{comp.image}}</span>
-            </div>
-            <selections-list [selections]="comp.selections"></selections-list>
-        </div>
-        <hr/>
-    </li>
+            <hr/>
+        </li>
+    </ul>
 </div>

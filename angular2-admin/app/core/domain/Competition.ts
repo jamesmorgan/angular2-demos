@@ -22,8 +22,8 @@ export class Competition {
         this.game = new ID(comp.game);
         this.description = comp.description;
         this.shortName = comp.shortName;
-        this.updated = new Date(comp.updated);
-        this.startDate = new Date(comp.startDate);
+        this.updated = new Date(comp.updated * 1000); // unix -> js date
+        this.startDate = new Date(comp.start * 1000); // unix -> js date
         this.status = new Status(comp.status);
         this.order = comp.order;
         this.image = comp.image;

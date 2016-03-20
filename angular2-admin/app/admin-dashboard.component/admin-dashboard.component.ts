@@ -25,6 +25,7 @@ export class AdminDashboardComponent implements OnDestroy, OnInit {
 
     /** Subscriber */
     private _competitionsEventHandler:EventEmitter<Competition[]>;
+
     private _competitionsSubscription:Subscription;
 
     constructor(private _competitionsService:CompetitionsService) {
@@ -37,7 +38,7 @@ export class AdminDashboardComponent implements OnDestroy, OnInit {
         // Subscribe an changes which may happen
         this._competitionsSubscription = this._competitionsService.competitionsChanged$.subscribe((competitions) => {
             this.competitionsObservable = competitions;
-        })
+        });
     }
 
     ngOnInit():any {
@@ -47,6 +48,7 @@ export class AdminDashboardComponent implements OnDestroy, OnInit {
     ngOnDestroy():any {
         // prevent memory leak when component destroyed
         this._competitionsSubscription.unsubscribe();
+
         return this._competitionsEventHandler.unsubscribe();
     }
 }
