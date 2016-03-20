@@ -1,12 +1,13 @@
 import {Injectable, EventEmitter} from "angular2/core";
-import {Http, Headers} from "angular2/http";
 import {Observable} from "rxjs/Observable";
 import {Competition} from "../domain/Competition";
 import {Subject} from "rxjs/Subject";
 import {Status} from "../domain/Status";
 import {ID} from "../domain/ID";
+import {CompetitionApi} from "../api/CompetitionApi";
 import "rxjs/add/operator/share";
 import "rxjs/Rx";
+
 // import 'rxjs/add/operator/share';
 // import 'rxjs/add/operator/map';
 // import 'rxjs/operator/delay';
@@ -31,9 +32,8 @@ export class CompetitionsService {
     /** Public Observer  **/
     competitionsChanged$:Observable<Competition[]> = this._competitionsSource.asObservable().share(); // share() = This will allow multiple Subscribers to one Observable
 
-    constructor(private _http:Http) {
-        // Get the data on creation
-        _http.get('http://localhost:8080/competitions')
+    constructor(private _competitionApi:CompetitionApi) {
+        _competitionApi.load()
             .map(res => res.json())
             .subscribe(
                 data => {
@@ -68,28 +68,7 @@ export class CompetitionsService {
         });
 
         if (compId) {
-
-            var headers = new Headers();
-            headers.append('Content-Type', 'application/json');
-
-            var payload = {
-                status: status
-            };
-
-
-            this._http.put('http://localhost:8080/competition/status/' + compId.toString(), JSON.stringify(payload), {
-                    headers: headers
-                })
-                // FIXME -> toPromise() should have worked, fallen back to subscribe...
-                //.toPromise()
-                //.then((res) => {
-                //    console.error('Successfully saved status', res);
-                //    this.competitions[compIdx].status = status;
-                //    this.publishToObservers();
-                //})
-                //.catch((err) => {
-                //    console.error('Unable to set status', err);
-                //})
+            this._competitionApi.updateStatus(compId, status)
                 .subscribe(
                     res => {
                         console.info('Successfully updated status', res);

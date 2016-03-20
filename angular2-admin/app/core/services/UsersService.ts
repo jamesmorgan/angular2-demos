@@ -12,7 +12,7 @@ export class UsersService {
     private users:User[];
 
     /** Private Observable **/
-    private _usersSource:Subject = new Subject<User[]>();
+    private _usersSource:Subject<User[]> = new Subject<User[]>();
 
     /** Public Observer  **/
     usersChanged$ = this._usersSource.asObservable().share(); // share() = This will allow multiple Subscribers to one Observable
