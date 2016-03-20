@@ -6,13 +6,8 @@ import {Status} from "../domain/Status";
 import {ID} from "../domain/ID";
 import {CompetitionApi} from "../api/CompetitionApi";
 import "rxjs/add/operator/share";
+import "rxjs/add/operator/map";
 import "rxjs/Rx";
-
-// import 'rxjs/add/operator/share';
-// import 'rxjs/add/operator/map';
-// import 'rxjs/operator/delay';
-// import 'rxjs/operator/mergeMap';
-// import 'rxjs/operator/switchMap';
 
 @Injectable()
 export class CompetitionsService {
@@ -20,10 +15,8 @@ export class CompetitionsService {
     /** Internal model state */
     private competitions:Competition[];
 
-    /**
-     * Public Publisher - async = true
-     * @deprecated
-     */
+    /** Public Publisher
+     *  @deprecated */
     onCompetitionsChanged = new EventEmitter<Competition[]>(true);
 
     /** Private Observable **/
@@ -33,11 +26,10 @@ export class CompetitionsService {
     competitionsChanged$:Observable<Competition[]> = this._competitionsSource.asObservable().share(); // share() = This will allow multiple Subscribers to one Observable
 
     constructor(private _competitionApi:CompetitionApi) {
-        _competitionApi.load()
-            .map(res => res.json())
+        this._competitionApi.load()
             .subscribe(
                 data => {
-                    this.parseCompetitions(data);
+                    this.competitions = data;
                     this.triggerCompetitionsChanged();
                     this.publishToObservers();
                 },
@@ -55,11 +47,8 @@ export class CompetitionsService {
         this.onCompetitionsChanged.emit(this.competitions);
     }
 
-    private parseCompetitions(competitions:Object[]):void {
-        this.competitions = competitions.map(function (competition) {
-            return new Competition().fromJson(competition);
-        });
-        console.log('Parsed competitions', this.competitions);
+    public findCompetition(compId:ID):Observable<Competition> {
+        return this._competitionApi.findCompetition(compId);
     }
 
     public updateStatus(compId:ID, status:Status):void {
