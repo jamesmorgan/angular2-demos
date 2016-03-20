@@ -1,9 +1,6 @@
-import {Component} from 'angular2/core';
+import {Component, OnDestroy, Input} from "angular2/core";
 import {CompetitionsService} from "../core/services/CompetitionsService";
 import {Competition} from "../core/domain/Competition";
-import {EventEmitter} from "angular2/core";
-import {OnDestroy} from "angular2/core";
-import {Input} from "angular2/core";
 import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
 import {CompetitionStatusComponent} from "../competition-status.component/competition-status.component";
 
@@ -19,7 +16,19 @@ import {CompetitionStatusComponent} from "../competition-status.component/compet
 export class CompetitionsListComponent implements OnDestroy {
 
     /** Public data */
-    @Input() competitions:Competition[];
+    @Input()
+    competitions:Competition[];
+
+    constructor(private _competitionService:CompetitionsService) {
+    }
+
+    loadCompetition(competition) {
+        this._competitionService.findCompetition(competition._id)
+            .subscribe(
+                (data) => console.log(data),
+                (err) => console.error(err)
+            )
+    }
 
     ngOnDestroy() {
 
