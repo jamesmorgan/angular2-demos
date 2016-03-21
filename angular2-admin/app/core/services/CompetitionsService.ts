@@ -1,4 +1,4 @@
-import {Injectable, EventEmitter} from "angular2/core";
+import {Injectable} from "angular2/core";
 import {Observable} from "rxjs/Observable";
 import {Competition} from "../domain/Competition";
 import {Subject} from "rxjs/Subject";
