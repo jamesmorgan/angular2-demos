@@ -1,11 +1,11 @@
 import {Component} from "angular2/core";
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from "angular2/router";
-import {AdminDashboardComponent} from "../admin-dashboard.component/admin-dashboard.component";
-import {AdminUsersDashboardComponent} from "../admin-users-dashboard.component/admin-users-dashboard.component";
 import {CompetitionsService} from "../core/services/CompetitionsService";
 import {UsersService} from "../core/services/UsersService";
 import {CompetitionApi} from "../core/api/CompetitionApi";
 import {SelectionsService} from "../core/services/SelectionsService";
+import {AdminUsersDashboardComponent} from "../admin-users-dashboard.component/admin-users-dashboard.component";
+import {AdminCompetitionDashboardComponent} from "../admin-competition-dashboard.component/admin-competition-dashboard.component";
 
 @Component({
     selector: 'my-app',
@@ -22,9 +22,12 @@ import {SelectionsService} from "../core/services/SelectionsService";
 })
 @RouteConfig([
     {
-        path: '/admin', name: 'AdminDashboard', component: AdminDashboardComponent,
+        path: '/admin/competition', name: 'AdminCompetitionDashboard', component: AdminCompetitionDashboardComponent,
         useAsDefault: true
     },
+    // {
+    //     path: '/admin/competition/edit/:competitionId', name: 'AdminDashboard', component: AdminDashboardComponent
+    // },
     {
         path: '/admin/users', name: 'AdminUsersDashboard', component: AdminUsersDashboardComponent
     }
