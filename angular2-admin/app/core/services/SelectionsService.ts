@@ -12,7 +12,7 @@ export class SelectionsService {
     private selections:Selection[];
 
     /** Private Observable **/
-    private _selectionsSource:Subject = new Subject<Selection[]>();
+    private _selectionsSource:Subject<Selection[]> = new Subject<Selection[]>();
 
     /** Public Observer  **/
     selectionsChanged$ = this._selectionsSource.asObservable()

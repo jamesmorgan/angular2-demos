@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit} from "angular2/core";
+import {Component, OnDestroy, OnInit} from "angular2/core";
 import {CompetitionsListComponent} from "../competitions-list.component/competitions-list.component";
 import {Competition} from "../core/domain/Competition";
 import {CompetitionsService} from "../core/services/CompetitionsService";
@@ -6,13 +6,13 @@ import {Subscription} from "rxjs/Subscription";
 
 @Component({
     selector: 'admin-dashboard',
-    templateUrl: 'app/admin-dashboard.component/admin-dashboard.component.html',
-    styleUrls: ['app/admin-dashboard.component/admin-dashboard.component.css'],
+    templateUrl: 'app/admin-competition-dashboard.component/admin-competition-dashboard.component.html',
+    styleUrls: ['app/admin-competition-dashboard.component/admin-competition-dashboard.component.css'],
     directives: [
         CompetitionsListComponent
     ]
 })
-export class AdminDashboardComponent implements OnDestroy, OnInit {
+export class AdminCompetitionDashboardComponent implements OnDestroy, OnInit {
 
     /** Public data */
     competitions:Competition[];
