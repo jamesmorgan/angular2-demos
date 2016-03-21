@@ -10,23 +10,25 @@
         <div class="media-body">
             <h2 class="media-heading">{{ comp.name }}</h2>
 
+            <button (click)="loadCompetition(comp)" class="btn btn-primary btn-sm pull-sm-right">GO</button>
+
             <p>
                 {{ comp.description }}
-                <!--<em>{{comp.game}}</em>-->
-                <!--<button (click)="loadCompetition(comp)">load</button>-->
             </p>
 
-            <competition-status [competition]="comp"></competition-status>
+            <!--<p>-->
+                <!--<em>{{comp.game}}</em>-->
+            <!--</p>-->
 
-            <hr/>
+            <div class="bottom-margin-md">
+                <competition-status [competition]="comp"></competition-status>
+            </div>
 
-            <ul class="list-group">
+            <ul class="list-group bottom-margin-md">
                 <li class="list-group-item">Updated: {{comp.updated | date:'short'}}</li>
                 <li class="list-group-item">Started: {{comp.startDate | date:'short'}}</li>
                 <li class="list-group-item">Order: {{comp.order}}</li>
             </ul>
-
-            <hr/>
 
             <selections-list [selections]="comp.selections"></selections-list>
 
