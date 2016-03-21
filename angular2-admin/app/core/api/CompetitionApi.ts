@@ -14,6 +14,12 @@ export class CompetitionApi {
     constructor(private _http:Http) {
     }
 
+    create(comp:Competition) {
+        return this._http.post(this.BASE_URL + '/auth/competition', JSON.stringify(comp), {
+            headers: CompetitionApi.json()
+        });
+    }
+
     load():Observable<Competition[]> {
         return this._http.get(this.BASE_URL + '/competitions')
             .map(res => res.json())
@@ -30,17 +36,7 @@ export class CompetitionApi {
             });
     }
 
-    updateStatus(compId:ID, status:Status):Observable<Response> {
-        var payload = {
-            status: status
-        };
-        return this._http.put(this.BASE_URL + '/competition/status/' + compId.toString(), JSON.stringify(payload), {
-            headers: CompetitionApi.json()
-        });
-    }
-
     saveSelectionForComp(compId:ID, selection:Selection) {
-        // TODO auth?
         var payload = {
             selection: selection
         };
@@ -50,12 +46,20 @@ export class CompetitionApi {
     }
 
     updateScore(compId:ID, selectionId:ID, score:number) {
-        // TODO auth?
         var payload = {
             selectionId: selectionId.toString,
             score: score
         };
         return this._http.put(this.BASE_URL + '/auth/competition/push/' + compId.toString(), JSON.stringify(payload), {
+            headers: CompetitionApi.json()
+        });
+    }
+
+    updateStatus(compId:ID, status:Status):Observable<Response> {
+        var payload = {
+            status: status
+        };
+        return this._http.put(this.BASE_URL + '/competition/status/' + compId.toString(), JSON.stringify(payload), {
             headers: CompetitionApi.json()
         });
     }

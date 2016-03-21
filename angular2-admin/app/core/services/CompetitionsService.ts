@@ -1,4 +1,4 @@
-import {Injectable, EventEmitter} from "angular2/core";
+import {Injectable} from "angular2/core";
 import {Observable} from "rxjs/Observable";
 import {Competition} from "../domain/Competition";
 import {Subject} from "rxjs/Subject";
@@ -57,6 +57,10 @@ export class CompetitionsService {
 
     public findCompetition(compId:ID):Observable<Competition> {
         return this._competitionApi.findCompetition(compId);
+    }
+
+    public createCompetition(comp:Competition) {
+        return this._competitionApi.create(comp);
     }
 
     public updateStatus(compId:ID, status:Status):void {
