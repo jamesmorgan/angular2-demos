@@ -6,6 +6,7 @@ import {UsersService} from "../core/services/UsersService";
 import {CompetitionApi} from "../core/api/CompetitionApi";
 import {SelectionsService} from "../core/services/SelectionsService";
 import {AdminCompetitionDashboardComponent} from "../admin-competition-dashboard.component/admin-competition-dashboard.component";
+import {CompetitionEditComponent} from "../competition-edit.component/competition-edit.component";
 
 @Component({
     selector: 'my-app',
@@ -21,13 +22,9 @@ import {AdminCompetitionDashboardComponent} from "../admin-competition-dashboard
     ],
 })
 @RouteConfig([
-    {
-        path: '/admin/competition', name: 'AdminCompetitionDashboard', component: AdminCompetitionDashboardComponent,
-        useAsDefault: true
-    },
-    {
-        path: '/admin/users', name: 'AdminUsersDashboard', component: AdminUsersDashboardComponent
-    }
+    {path: '/admin/competition', name: 'AdminCompetitionDashboard', component: AdminCompetitionDashboardComponent, useAsDefault: true},
+    {path: '/admin/competition/edit/:competitionId', name: 'AdminCompetitionEdit', component: CompetitionEditComponent},
+    {path: '/admin/users', name: 'AdminUsersDashboard', component: AdminUsersDashboardComponent}
 ])
 export class AppComponent {
 }

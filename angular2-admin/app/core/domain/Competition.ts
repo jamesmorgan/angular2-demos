@@ -17,7 +17,7 @@ export class Competition {
     image:String;
 
     fromJson(comp) {
-        this._id = comp._id;
+        this._id = new ID(comp._id);
         this.name = comp.name;
         this.game = new ID(comp.game);
         this.description = comp.description;

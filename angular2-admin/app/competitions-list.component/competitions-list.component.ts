@@ -1,13 +1,10 @@
-
 import {Component, OnDestroy, Input} from "angular2/core";
-import {CompetitionsService} from "../core/services/CompetitionsService";
-
+import {Router} from "angular2/router";
 import {Competition} from "../core/domain/Competition";
-
 import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
 import {CompetitionStatusComponent} from "../competition-status.component/competition-status.component";
 import {DatePipe} from "angular2/common";
-import {SelectionsService} from "../core/services/SelectionsService";
+import {CompetitionsService} from "../core/services/CompetitionsService";
 
 @Component({
     selector: 'competitions-list',
@@ -22,17 +19,19 @@ import {SelectionsService} from "../core/services/SelectionsService";
 export class CompetitionsListComponent implements OnDestroy {
 
     /** Public data */
-    @Input() competitions:Competition[];
+    @Input()
+    competitions:Competition[];
 
-    constructor(private _competitionService:CompetitionsService, private _selectionsService:SelectionsService) {
+    constructor(private _router:Router, private _competitionService:CompetitionsService) {
     }
 
     loadCompetition(competition) {
-        this._competitionService.findCompetition(competition._id)
-            .subscribe(
-                (data) => console.log(data),
-                (err) => console.error(err)
-            )
+        // this._competitionService.findCompetition(competition._id)
+        //     .subscribe(
+        //         (data) => console.log(data),
+        //         (err) => console.error(err)
+        //     );
+        this._router.navigate(['AdminCompetitionEdit', {competitionId: competition._id.toString()}]);
     }
 
     ngOnDestroy() {
