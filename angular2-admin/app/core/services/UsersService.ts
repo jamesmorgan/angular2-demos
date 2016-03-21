@@ -41,8 +41,8 @@ export class UsersService {
                     this.parseUsers(data.json());
                     this.publishToObservers();
                 },
-                err => console.error('Failed to load competitions', err),
-                () => console.log('Loaded competitions')
+                err => console.error('Failed to load users', err),
+                () => console.log('Loaded users')
             );
     }
 
@@ -54,6 +54,6 @@ export class UsersService {
         this.users = users.map(function (user) {
             return new User().fromJson(user);
         });
-        console.log('Parsed users', this.users);
+        // console.log('Parsed users', this.users);
     }
 }

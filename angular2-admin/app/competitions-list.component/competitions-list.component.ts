@@ -7,6 +7,7 @@ import {Competition} from "../core/domain/Competition";
 import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
 import {CompetitionStatusComponent} from "../competition-status.component/competition-status.component";
 import {DatePipe} from "angular2/common";
+import {SelectionsService} from "../core/services/SelectionsService";
 
 @Component({
     selector: 'competitions-list',
@@ -23,7 +24,7 @@ export class CompetitionsListComponent implements OnDestroy {
     /** Public data */
     @Input() competitions:Competition[];
 
-    constructor(private _competitionService:CompetitionsService) {
+    constructor(private _competitionService:CompetitionsService, private _selectionsService:SelectionsService) {
     }
 
     loadCompetition(competition) {

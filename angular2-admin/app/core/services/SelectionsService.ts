@@ -54,6 +54,6 @@ export class SelectionsService {
         this.selections = selections.map(function (selection) {
             return new Selection().fromJson(selection);
         });
-        console.log('Parsed selections', this.selections);
+        // console.log('Parsed selections', this.selections);
     }
 }
