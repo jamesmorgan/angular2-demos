@@ -1,12 +1,6 @@
-<div>
-    <!--<div *ngIf="users === null || users.length <= 0">-->
-        <!--<strong>No users!</strong>-->
-    <!--</div>-->
-
-    <table>
+<table class="table table-striped">
     <tr *ngFor="#user of users">
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
     </tr>
-    </table>
-</div>
+</table>
