@@ -18,8 +18,7 @@ import {DatePipe} from "angular2/common";
 export class CompetitionsListComponent implements OnDestroy {
 
     /** Public data */
-    @Input()
-    competitions:Competition[];
+    @Input() competitions:Competition[];
 
     constructor(private _competitionService:CompetitionsService) {
     }

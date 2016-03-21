@@ -17,23 +17,12 @@ export class AdminDashboardComponent implements OnDestroy, OnInit {
     /** Public data */
     competitions:Competition[];
 
-    /** Public data */
-    competitionsObservable:Competition[];
-
-    /** Subscriber */
-    private _competitionsEventHandler:EventEmitter<Competition[]>;
-
     private _competitionsSubscription:Subscription;
 
     constructor(private _competitionsService:CompetitionsService) {
-        // Get a handle on the event emitter to react on the changes
-        this._competitionsEventHandler = this._competitionsService.onCompetitionsChanged.subscribe((competitions) => {
-            this.competitions = competitions;
-        });
-
         // Subscribe an changes which may happen
         this._competitionsSubscription = this._competitionsService.competitionsChanged$.subscribe((competitions) => {
-            this.competitionsObservable = competitions;
+            this.competitions = competitions;
         });
     }
 
@@ -42,9 +31,6 @@ export class AdminDashboardComponent implements OnDestroy, OnInit {
     }
 
     ngOnDestroy():any {
-        // prevent memory leak when component destroyed
-        this._competitionsSubscription.unsubscribe();
-
-        return this._competitionsEventHandler.unsubscribe();
+        this._competitionsSubscription.unsubscribe(); // prevent memory leak when component destroyed
     }
 }

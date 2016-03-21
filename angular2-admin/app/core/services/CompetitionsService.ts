@@ -7,6 +7,7 @@ import {ID} from "../domain/ID";
 import {CompetitionApi} from "../api/CompetitionApi";
 import "rxjs/add/operator/share";
 import "rxjs/add/operator/map";
+import "rxjs/add/operator/publishReplay";
 import "rxjs/Rx";
 
 @Injectable()
@@ -15,22 +16,34 @@ export class CompetitionsService {
     /** Internal model state */
     private competitions:Competition[];
 
-    /** Public Publisher
-     *  @deprecated */
-    onCompetitionsChanged = new EventEmitter<Competition[]>(true);
-
     /** Private Observable **/
     private _competitionsSource:Subject<Competition[]> = new Subject<Competition[]>();
 
     /** Public Observer  **/
-    competitionsChanged$:Observable<Competition[]> = this._competitionsSource.asObservable().share(); // share() = This will allow multiple Subscribers to one Observable
+    competitionsChanged$:Observable<Competition[]> =
+        this._competitionsSource.asObservable()
+            /**
+             * publishReplay() = Changes return type fo ConnectableObservable see: http://reactivex.io/documentation/operators/replay.html
+             * The Observable will always emit the same complete sequence to any future observers,
+             * even those observers that subscribe after the connectable Observable has begun to emit items to other subscribed observers.
+             */
+            .publishReplay()
+            /**
+             * refCount() = turns ConnectableObservable and returns an ordinary Observable
+             * Joining & disconnecting the underlying the ConnectableObservable to the Connectable.
+             * RefCount then keeps track of how many other observers subscribe to it and does not disconnect from the underlying connectable Observable until the last observer has done so.
+             */
+            .refCount()
+            /**
+             * share() = This will allow multiple Subscribers to one Observable
+             */
+            .share();
 
     constructor(private _competitionApi:CompetitionApi) {
         this._competitionApi.load()
             .subscribe(
                 data => {
                     this.competitions = data;
-                    this.triggerCompetitionsChanged();
                     this.publishToObservers();
                 },
                 err => console.error('Failed to load competitions', err),
@@ -40,11 +53,6 @@ export class CompetitionsService {
 
     private publishToObservers():void {
         this._competitionsSource.next(this.competitions); // Push a new copy to all Subscribers.
-    }
-
-    /** @deprecated */
-    private triggerCompetitionsChanged():void {
-        this.onCompetitionsChanged.emit(this.competitions);
     }
 
     public findCompetition(compId:ID):Observable<Competition> {
