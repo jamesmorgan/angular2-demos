@@ -1,5 +1,8 @@
-<span>Status: {{competition.status}}</span>
-
-<select [(ngModel)]="competition.status" (ngModelChange)="statusSelected()">
-    <option *ngFor="#status of form.statuses" [(value)]="status.value">{{status.value}}</option>
-</select>
+<ul class="list-group">
+    <li class="list-group-item">
+        Status:
+        <select [(ngModel)]="competition.status" (ngModelChange)="statusSelected()">
+            <option *ngFor="#status of form.statuses" [(value)]="status.value">{{status.value}}</option>
+        </select>
+    </li>
+</ul>

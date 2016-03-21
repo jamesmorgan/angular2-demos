@@ -2,20 +2,20 @@ import {Injectable} from "angular2/core";
 import {Http} from "angular2/http";
 import 'rxjs/add/operator/share';
 
-import {User} from "../domain/User";
+import {Selection} from "../domain/Selection";
 import {Subject} from "rxjs/Subject";
 
 @Injectable()
-export class UsersService {
+export class SelectionsService {
 
     /** Internal model state */
-    private users:User[];
+    private selections:Selection[];
 
     /** Private Observable **/
-    private _usersSource:Subject<User[]> = new Subject<User[]>();
+    private _selectionsSource:Subject = new Subject<Selection[]>();
 
     /** Public Observer  **/
-    usersChanged$ = this._usersSource.asObservable()
+    selectionsChanged$ = this._selectionsSource.asObservable()
         /**
          * publishReplay() = Changes return type fo ConnectableObservable see: http://reactivex.io/documentation/operators/replay.html
          * The Observable will always emit the same complete sequence to any future observers,
@@ -35,25 +35,25 @@ export class UsersService {
 
     constructor(private _http:Http) {
         // Get the data on creation
-        _http.get('http://localhost:8080/users')
+        _http.get('http://localhost:8080/selections')
             .subscribe(
                 data => {
-                    this.parseUsers(data.json());
+                    this.parseSelections(data.json());
                     this.publishToObservers();
                 },
-                err => console.error('Failed to load competitions', err),
-                () => console.log('Loaded competitions')
+                err => console.error('Failed to load selections', err),
+                () => console.log('Loaded selections')
             );
     }
 
     private publishToObservers():void {
-        this._usersSource.next(this.users); // Push a new copy to all Subscribers.
+        this._selectionsSource.next(this.selections); // Push a new copy to all Subscribers.
     }
 
-    private parseUsers(users:Object[]):void {
-        this.users = users.map(function (user) {
-            return new User().fromJson(user);
+    private parseSelections(selections:Object[]):void {
+        this.selections = selections.map(function (selection) {
+            return new Selection().fromJson(selection);
         });
-        console.log('Parsed users', this.users);
+        console.log('Parsed selections', this.selections);
     }
 }

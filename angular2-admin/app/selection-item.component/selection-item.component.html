@@ -1,11 +1,12 @@
-<div>
-    <span>
-        <strong>Score:</strong> {{selection.score || 'N/A'}}
-    </span>
-    <span>
-        <strong>{{selection.selectionName}}</strong> <small>{{selection.selection}}</small>
-    </span>
-    <span>{{selection.potIndex}}</span>
-    <span>{{selection.multiplier}}</span>
-    <span>{{selection.handicap}}</span>
+<div class="card-header">
+    {{selection.name}}
+</div>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">Score: <mark>{{selection.score || 'n/a'}}</mark></li>
+    <li class="list-group-item">Pot Index: {{selection.potIndex}}</li>
+    <li class="list-group-item">Handicap: {{selection.handicap}}</li>
+    <li class="list-group-item">Mulitlpier: {{selection.multiplier}}</li>
+</ul>
+<div class="card-block">
+    <a href="#" class="card-link">Card link</a>
 </div>

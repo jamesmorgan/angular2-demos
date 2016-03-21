@@ -3,7 +3,10 @@
         <!--<strong>No users!</strong>-->
     <!--</div>-->
 
-    <li *ngFor="#user of users">
-        {{ user.name }}
-    </li>
+    <table>
+    <tr *ngFor="#user of users">
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+    </tr>
+    </table>
 </div>

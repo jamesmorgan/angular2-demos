@@ -5,6 +5,7 @@ import {AdminUsersDashboardComponent} from "../admin-users-dashboard.component/a
 import {CompetitionsService} from "../core/services/CompetitionsService";
 import {UsersService} from "../core/services/UsersService";
 import {CompetitionApi} from "../core/api/CompetitionApi";
+import {SelectionsService} from "../core/services/SelectionsService";
 
 @Component({
     selector: 'my-app',
@@ -15,6 +16,7 @@ import {CompetitionApi} from "../core/api/CompetitionApi";
         ROUTER_PROVIDERS,
         CompetitionsService,
         UsersService,
+        SelectionsService,
         CompetitionApi
     ],
 })
