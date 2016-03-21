@@ -31,22 +31,45 @@ export class CompetitionApi {
     }
 
     updateStatus(compId:ID, status:Status):Observable<Response> {
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-
         var payload = {
             status: status
         };
-
         return this._http.put(this.BASE_URL + '/competition/status/' + compId.toString(), JSON.stringify(payload), {
-            headers: headers
-        })
+            headers: CompetitionApi.json()
+        });
+    }
+
+    saveSelectionForComp(compId:ID, selection:Selection) {
+        // TODO auth?
+        var payload = {
+            selection: selection
+        };
+        return this._http.put(this.BASE_URL + '/auth/competition/selection/push/' + compId.toString(), JSON.stringify(payload), {
+            headers: CompetitionApi.json()
+        });
+    }
+
+    updateScore(compId:ID, selectionId:ID, score:number) {
+        // TODO auth?
+        var payload = {
+            selectionId: selectionId.toString,
+            score: score
+        };
+        return this._http.put(this.BASE_URL + '/auth/competition/push/' + compId.toString(), JSON.stringify(payload), {
+            headers: CompetitionApi.json()
+        });
     }
 
     private parseCompetitions(competitions:Object[]):Competition[] {
         return competitions.map(function (competition) {
             return new Competition().fromJson(competition);
         });
+    }
+
+    private static json():Headers {
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return headers;
     }
 
 }
