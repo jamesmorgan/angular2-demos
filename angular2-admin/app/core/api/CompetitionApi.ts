@@ -40,21 +40,23 @@ export class CompetitionApi {
     }
 
     saveSelectionForComp(compId:ID, selection:Selection) {
-        // TODO auth?
         var payload = {
             selection: selection
         };
+
+        // /auth/ URLs are protected by the middleware
         return this._http.put(this.BASE_URL + '/auth/competition/selection/push/' + compId.toString(), JSON.stringify(payload), {
             headers: CompetitionApi.json()
         });
     }
-
+    
     updateScore(compId:ID, selectionId:ID, score:number) {
-        // TODO auth?
         var payload = {
             selectionId: selectionId.toString,
             score: score
         };
+
+        // /auth/ URLs are protected by the middleware
         return this._http.put(this.BASE_URL + '/auth/competition/push/' + compId.toString(), JSON.stringify(payload), {
             headers: CompetitionApi.json()
         });
