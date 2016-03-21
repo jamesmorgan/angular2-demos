@@ -29,7 +29,7 @@ export class CompetitionsService {
              */
             .publishReplay()
             /**
-             * refCount() = turns ConnectableObservable and returns an ordinary Observable
+             * refCount() = turns ConnectableObservable and returns an ordinary Observable see: http://reactivex.io/documentation/operators/refcount.html
              * Joining & disconnecting the underlying the ConnectableObservable to the Connectable.
              * RefCount then keeps track of how many other observers subscribe to it and does not disconnect from the underlying connectable Observable until the last observer has done so.
              */
