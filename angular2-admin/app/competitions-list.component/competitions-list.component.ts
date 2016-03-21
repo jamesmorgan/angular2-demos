@@ -3,6 +3,7 @@ import {CompetitionsService} from "../core/services/CompetitionsService";
 import {Competition} from "../core/domain/Competition";
 import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
 import {CompetitionStatusComponent} from "../competition-status.component/competition-status.component";
+import {DatePipe} from "angular2/common";
 
 @Component({
     selector: 'competitions-list',
@@ -11,7 +12,8 @@ import {CompetitionStatusComponent} from "../competition-status.component/compet
     directives: [
         SelectionsListComponent,
         CompetitionStatusComponent
-    ]
+    ],
+    pipes: [DatePipe]
 })
 export class CompetitionsListComponent implements OnDestroy {
 

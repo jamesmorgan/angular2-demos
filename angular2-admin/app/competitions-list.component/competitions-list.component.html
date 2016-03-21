@@ -15,8 +15,8 @@
                     <span>{{comp.description}}</span>
                 </div>
                 <div>
-                    <span><strong>Updated:</strong> {{comp.updated}}</span>
-                    <span><strong>Started:</strong> {{comp.startDate}}</span>
+                    <span><strong>Updated:</strong> {{comp.updated | date:'short'}}</span>
+                    <span><strong>Started:</strong> {{comp.startDate | date:'short'}}</span>
                 </div>
                 <div>
                     <competition-status [competition]="comp"></competition-status>
