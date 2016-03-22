@@ -19,9 +19,15 @@
         </ul>
 
         <hr />
-        
+
         <selections-list [selections]="competition.selections"></selections-list>
 
     </div>
 </div>
+
+Selections:
+<select [(ngModel)]="addSelection">
+    <option *ngFor="#selection of selections" [(value)]="selection._id">{{selection.name}}</option>
+</select>
+
 

@@ -36,7 +36,6 @@ export class CompetitionEditComponent implements OnInit, OnDestroy {
 
     /** Public data */
     selections:Selection[];
-
     competition:Competition;
 
     private _selectionsSubscription:Subscription;
