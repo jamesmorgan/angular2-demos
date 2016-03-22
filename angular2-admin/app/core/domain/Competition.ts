@@ -10,7 +10,7 @@ export class Competition {
     description:String;
     shortName:String;
     updated:Date;
-    startDate:Date;
+    start:Date;
     selections:Selection[];
     status:Status;
     order:boolean;
@@ -23,7 +23,7 @@ export class Competition {
         this.description = comp.description;
         this.shortName = comp.shortName;
         this.updated = new Date(comp.updated * 1000); // unix -> js date
-        this.startDate = new Date(comp.start * 1000); // unix -> js date
+        this.start = new Date(comp.start * 1000); // unix -> js date
         this.status = new Status(comp.status);
         this.order = comp.order;
         this.image = comp.image;

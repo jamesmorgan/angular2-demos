@@ -1,5 +1,25 @@
+<div class="media" *ngIf="competition">
+    <div class="media-left">
+        <a href="#">
+            <img class="media-object" data-src="{{ competition.image }}" alt="{{ competition.shortName }}">
+        </a>
+    </div>
+    <div class="media-body">
+        <h2 class="media-heading">{{ competition.name }}</h2>
 
+        <p>
+            {{ competition.description }}
+        </p>
 
-{{competition | json}}
+        <ul class="list-group bottom-margin-md">
+            <li class="list-group-item">Status: {{competition.status.toString()}}</li>
+            <li class="list-group-item">Updated: {{competition.updated | date:'short'}}</li>
+            <li class="list-group-item">Started: {{competition.start | date:'short'}}</li>
+            <li class="list-group-item">Order: {{competition.order}}</li>
+        </ul>
 
-AdminCompetitionEdit
+        <selections-list [selections]="competition.selections"></selections-list>
+
+    </div>
+</div>
+

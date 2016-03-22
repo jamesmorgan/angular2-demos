@@ -3,6 +3,7 @@ import {RouteParams} from "angular2/router";
 import {CompetitionsService} from "../core/services/CompetitionsService";
 import {ID} from "../core/domain/ID";
 import {Competition} from "../core/domain/Competition";
+import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
 
 // TODO there seems to be no true alternatives of document way of route resolves?
 /**
@@ -24,7 +25,9 @@ import {Competition} from "../core/domain/Competition";
     selector: 'competition-edit',
     templateUrl: 'app/competition-edit.component/competition-edit.component.html',
     styleUrls: ['app/competition-edit.component/competition-edit.component.css'],
-    directives: []
+    directives: [
+        SelectionsListComponent
+    ]
 })
 export class CompetitionEditComponent implements OnInit {
 

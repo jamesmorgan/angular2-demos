@@ -14,22 +14,7 @@
                 {{ comp.description }}
             </p>
 
-            <!--<p>-->
-                <!--<em>{{comp.game}}</em>-->
-            <!--</p>-->
-
-            <div class="bottom-margin-md">
-                <competition-status [competition]="comp"></competition-status>
-            </div>
-
-            <ul class="list-group bottom-margin-md">
-                <li class="list-group-item">Updated: {{comp.updated | date:'short'}}</li>
-                <li class="list-group-item">Started: {{comp.startDate | date:'short'}}</li>
-                <li class="list-group-item">Order: {{comp.order}}</li>
-            </ul>
-
-            <selections-list [selections]="comp.selections"></selections-list>
-
+            <competition-status [competition]="comp" class="pull-sm-right"></competition-status>
         </div>
     </li>
 </ul>

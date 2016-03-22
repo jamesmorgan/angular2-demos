@@ -1,17 +1,14 @@
 import {Component, OnDestroy, Input} from "angular2/core";
 import {Router} from "angular2/router";
 import {Competition} from "../core/domain/Competition";
-import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
 import {CompetitionStatusComponent} from "../competition-status.component/competition-status.component";
 import {DatePipe} from "angular2/common";
-import {CompetitionsService} from "../core/services/CompetitionsService";
 
 @Component({
     selector: 'competitions-list',
     templateUrl: 'app/competitions-list.component/competitions-list.component.html',
     styleUrls: ['app/competitions-list.component/competitions-list.component.css'],
     directives: [
-        SelectionsListComponent,
         CompetitionStatusComponent
     ],
     pipes: [DatePipe]
@@ -22,15 +19,10 @@ export class CompetitionsListComponent implements OnDestroy {
     @Input()
     competitions:Competition[];
 
-    constructor(private _router:Router, private _competitionService:CompetitionsService) {
+    constructor(private _router:Router) {
     }
 
     loadCompetition(competition) {
-        // this._competitionService.findCompetition(competition._id)
-        //     .subscribe(
-        //         (data) => console.log(data),
-        //         (err) => console.error(err)
-        //     );
         this._router.navigate(['AdminCompetitionEdit', {competitionId: competition._id.toString()}]);
     }
 
