@@ -1,5 +1,43 @@
+<!--{{competition | json}}-->
 
+<ul class="media-list">
+    <li class="media">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object" data-src="{{ competition?.image }}" alt="{{ competition?.shortName }}">
+            </a>
+        </div>
+        <div class="media-body">
+            <h2 class="media-heading">name: {{ competition?.name }}</h2>
 
-{{competition | json}}
+            <p>
+                description: {{ competition?.description }}
+            </p>
 
-AdminCompetitionEdit
+            <p>
+                <em>{{competition?.game?.value }}</em>
+            </p>
+
+            <div class="bottom-margin-md" *ngIf="competition">
+                status:
+                <competition-status [competition]="competition"></competition-status>
+            </div>
+
+            <ul class="list-group bottom-margin-md">
+                <li class="list-group-item" *ngIf="competition && competition.updated">
+                    Updated: {{competition.updated | date:'short'}}
+                </li>
+                <li class="list-group-item" *ngIf="competition && competition.startDate">
+                    Started: {{competition.startDate | date:'short'}}
+                </li>
+                <li class="list-group-item">Order: {{competition?.order}}</li>
+            </ul>
+
+            <div class="bottom-margin-md" *ngIf="competition && competition.selections">
+                <selections-list [selections]="competition.selections"></selections-list>
+            </div>
+
+        </div>
+    </li>
+</ul>
+

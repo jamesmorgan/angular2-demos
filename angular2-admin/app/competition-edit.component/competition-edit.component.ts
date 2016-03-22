@@ -3,6 +3,8 @@ import {RouteParams, CanActivate, OnActivate, ComponentInstruction} from "angula
 import {CompetitionsService} from "../core/services/CompetitionsService";
 import {ID} from "../core/domain/ID";
 import {Competition} from "../core/domain/Competition";
+import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
+import {CompetitionStatusComponent} from "../competition-status.component/competition-status.component";
 
 // TODO there seems to be no true alternatives of document way of route resolves?
 /**
@@ -13,7 +15,9 @@ import {Competition} from "../core/domain/Competition";
  */
 @CanActivate(
     (next, prev) => {
-        console.log('@CanActivate() -> next', next, 'prev', prev);
+        console.log('@CanActivate() -> next', next);
+        console.log('@CanActivate() -> prev', prev);
+        // TODO this would be good for auth -> could always expose a /auth/check API or check some web token?
         return true;
     }
 )
@@ -21,10 +25,13 @@ import {Competition} from "../core/domain/Competition";
     selector: 'competition-edit',
     templateUrl: 'app/competition-edit.component/competition-edit.component.html',
     styleUrls: ['app/competition-edit.component/competition-edit.component.css'],
-    directives: []
+    directives: [
+        SelectionsListComponent, CompetitionStatusComponent
+    ]
 })
 export class CompetitionEditComponent implements OnInit, OnActivate {
 
+    /** Public data */
     competition:Competition;
 
     constructor(private _routeParams:RouteParams,
@@ -32,7 +39,8 @@ export class CompetitionEditComponent implements OnInit, OnActivate {
     }
 
     routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any {
-        console.log('routerOnActivate() -> nextInstruction', nextInstruction, 'prevInstruction', prevInstruction);
+        console.log('routerOnActivate() -> nextInstruction', nextInstruction);
+        console.log('routerOnActivate() -> prevInstruction', prevInstruction);
     }
 
     ngOnInit():any {
@@ -40,8 +48,12 @@ export class CompetitionEditComponent implements OnInit, OnActivate {
         console.log('Calling OnInit CompetitionEditComponent with competitionId: ' + competitionId);
         this._competitionsService.findCompetition(new ID(competitionId))
             .subscribe(
-                (data) => this.competition = new Competition().fromJson(data),
-                (err) => console.error(err)
+                (data:Competition) => {
+                    this.competition = data;
+                },
+                (err) => console.error(err),
+                () => console.log('Loaded competition', this.competition)
             );
     }
+
 }

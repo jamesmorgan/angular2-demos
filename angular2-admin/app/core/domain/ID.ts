@@ -1,11 +1,8 @@
 export class ID {
-    id:string;
+    value:string;
 
     constructor(id:string) {
-        this.id = id;
+        this.value = id;
     }
 
-    toString():String {
-        return this.id.toString();
-    }
 }

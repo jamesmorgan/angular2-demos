@@ -52,7 +52,7 @@ export class SelectionsService {
 
     private parseSelections(selections:Object[]):void {
         this.selections = selections.map(function (selection) {
-            return new Selection().fromJson(selection);
+            return Selection.fromJson(selection);
         });
         // console.log('Parsed selections', this.selections);
     }

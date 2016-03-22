@@ -47,7 +47,7 @@ export class CompetitionsService {
                     this.publishToObservers();
                 },
                 err => console.error('Failed to load competitions', err),
-                () => console.log('Loaded competitions')
+                () => console.log('Loaded competitions', this.competitions)
             );
     }
 
@@ -64,11 +64,12 @@ export class CompetitionsService {
     }
 
     public updateStatus(compId:ID, status:Status):void {
+        // FIXME this wont work if the users has not already populate the this.competitions list
         var compIdx = this.competitions.findIndex((comp:Competition) => {
-            return comp._id == compId;
+            return comp._id.value === compId.value;
         });
 
-        if (compId) {
+        if (compIdx >= 0) {
             this._competitionApi.updateStatus(compId, status)
                 .subscribe(
                     res => {

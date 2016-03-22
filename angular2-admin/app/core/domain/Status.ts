@@ -20,7 +20,4 @@ export class Status {
         this.value = status;
     }
 
-    toString():String {
-        return this.value;
-    }
 }
