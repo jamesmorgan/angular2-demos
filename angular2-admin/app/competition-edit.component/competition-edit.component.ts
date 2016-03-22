@@ -1,5 +1,5 @@
 import {Component, OnInit} from "angular2/core";
-import {RouteParams} from "angular2/router";
+import {RouteParams, CanActivate, OnActivate, ComponentInstruction} from "angular2/router";
 import {CompetitionsService} from "../core/services/CompetitionsService";
 import {ID} from "../core/domain/ID";
 import {Competition} from "../core/domain/Competition";
@@ -11,27 +11,28 @@ import {Competition} from "../core/domain/Competition";
  * Its parameters are (next, previous) which are the components you're routing to and the component
  * you've come from (or null if you have no history) respectively.
  */
-// @CanActivate(
-//     (next) => {
-//         var competitionId = this._routeParams.get('competitionId');
-//         return this._competitionsService.findCompetition(new ID(competitionId))
-//             .toPromise((message:Competition) => {
-//                 return true; //truthy lets route continue, false stops routing
-//             })
-//     }
-// )
+@CanActivate(
+    (next, prev) => {
+        console.log('@CanActivate() -> next', next, 'prev', prev);
+        return true;
+    }
+)
 @Component({
     selector: 'competition-edit',
     templateUrl: 'app/competition-edit.component/competition-edit.component.html',
     styleUrls: ['app/competition-edit.component/competition-edit.component.css'],
     directives: []
 })
-export class CompetitionEditComponent implements OnInit {
+export class CompetitionEditComponent implements OnInit, OnActivate {
 
     competition:Competition;
 
     constructor(private _routeParams:RouteParams,
                 private _competitionsService:CompetitionsService) {
+    }
+
+    routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any {
+        console.log('routerOnActivate() -> nextInstruction', nextInstruction, 'prevInstruction', prevInstruction);
     }
 
     ngOnInit():any {
