@@ -1,9 +1,12 @@
-import {Component, OnInit} from "angular2/core";
+import {Component, OnInit, OnDestroy} from "angular2/core";
 import {RouteParams} from "angular2/router";
 import {CompetitionsService} from "../core/services/CompetitionsService";
 import {ID} from "../core/domain/ID";
 import {Competition} from "../core/domain/Competition";
+import {Selection} from "../core/domain/Selection";
 import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
+import {SelectionsService} from "../core/services/SelectionsService";
+import {Subscription} from "rxjs/Subscription";
 
 // TODO there seems to be no true alternatives of document way of route resolves?
 /**
@@ -29,12 +32,22 @@ import {SelectionsListComponent} from "../selections-list.component/selections-l
         SelectionsListComponent
     ]
 })
-export class CompetitionEditComponent implements OnInit {
+export class CompetitionEditComponent implements OnInit, OnDestroy {
+
+    /** Public data */
+    selections:Selection[];
 
     competition:Competition;
 
+    private _selectionsSubscription:Subscription;
+
     constructor(private _routeParams:RouteParams,
-                private _competitionsService:CompetitionsService) {
+                private _competitionsService:CompetitionsService,
+                private _selectionsService:SelectionsService) {
+        // Subscribe an changes which may happen
+        this._selectionsSubscription = this._selectionsService.selectionsChanged$.subscribe((selections) => {
+            this.selections = selections;
+        });
     }
 
     ngOnInit():any {
@@ -45,5 +58,9 @@ export class CompetitionEditComponent implements OnInit {
                 (data) => this.competition = new Competition().fromJson(data),
                 (err) => console.error(err)
             );
+    }
+
+    ngOnDestroy():any {
+        this._selectionsSubscription.unsubscribe(); // prevent memory leak when component destroyed
     }
 }
