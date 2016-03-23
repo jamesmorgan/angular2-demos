@@ -46,6 +46,7 @@ export class CompetitionEditComponent implements OnInit, OnActivate, OnDestroy {
     /** Public data */
     competition:Competition;
     selections:Selection[];
+    newSelection:Selection;
 
     private _selectionsSubscription:Subscription;
 
@@ -56,6 +57,10 @@ export class CompetitionEditComponent implements OnInit, OnActivate, OnDestroy {
         this._selectionsSubscription = this._selectionsService.selectionsChanged$.subscribe((selections) => {
             this.selections = selections;
         });
+    }
+
+    addNewSelection() {
+        console.log(this.newSelection);
     }
 
     routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any {

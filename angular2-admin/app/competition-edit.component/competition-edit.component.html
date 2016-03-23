@@ -11,9 +11,9 @@
             {{ competition?.description }}
         </p>
 
-        <div *ngIf="competition">
-            status: <competition-status [competition]="competition"></competition-status>
-        </div>
+        <p *ngIf="competition">
+            <competition-status [competition]="competition" class="pull-sm-right"></competition-status>
+        </p>
 
         <ul class="list-group bottom-margin-md">
             <li class="list-group-item" *ngIf="competition && competition.updated">
@@ -29,10 +29,18 @@
             <selections-list [selections]="competition.selections"></selections-list>
         </div>
 
-        Selections:
-        <select [(ngModel)]="addSelection">
-            <option *ngFor="#selection of selections" [(value)]="selection._id">{{selection.name}}</option>
-        </select>
+        <div>
+            <select [(ngModel)]="newSelection">
+                <option *ngFor="#selection of selections" [(value)]="selection.name">{{selection.name}}</option>
+            </select>
+
+            <span *ngIf="newSelection">
+                {{ newSelection.name }}
+                {{ newSelection | json }}
+            </span>
+
+            <button (click)="addNewSelection()" class="btn btn-secondary btn-sm pull-sm-right">Add</button>
+        </div>
     </div>
 </div>
 
