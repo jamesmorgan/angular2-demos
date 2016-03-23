@@ -1,7 +1,6 @@
 import {Component, OnDestroy, Input} from "angular2/core";
 import {Router} from "angular2/router";
 import {Competition} from "../core/domain/Competition";
-import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
 import {CompetitionStatusComponent} from "../competition-status.component/competition-status.component";
 
 @Component({
@@ -9,7 +8,6 @@ import {CompetitionStatusComponent} from "../competition-status.component/compet
     templateUrl: 'app/competitions-list.component/competitions-list.component.html',
     styleUrls: ['app/competitions-list.component/competitions-list.component.css'],
     directives: [
-        SelectionsListComponent,
         CompetitionStatusComponent
     ]
 })

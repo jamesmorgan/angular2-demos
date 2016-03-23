@@ -1,34 +1,20 @@
 <ul class="media-list">
-    <li class="media" *ngFor="#comp of competitions">
+    <li class="media" *ngFor="#competition of competitions">
         <div class="media-left">
             <a href="#">
-                <img class="media-object" data-src="{{ comp.image }}" alt="{{ comp.shortName }}">
+                <img class="media-object" data-src="{{ competition.image }}" alt="{{ competition.shortName }}">
             </a>
         </div>
         <div class="media-body">
-            <h2 class="media-heading">{{ comp.name }}</h2>
+            <h2 class="media-heading">{{ competition.name }}</h2>
 
-            <button (click)="loadCompetition(comp)" class="btn btn-primary btn-sm pull-sm-right">GO</button>
-
-            <p>
-                {{ comp.description }}
-            </p>
+            <button (click)="loadCompetition(competition)" class="btn btn-primary btn-sm pull-sm-right">GO</button>
 
             <p>
-                <em>{{comp.game.value}}</em>
+                {{ competition.description }}
             </p>
 
-            <div class="bottom-margin-md">
-                <competition-status [competition]="comp"></competition-status>
-            </div>
-
-            <ul class="list-group bottom-margin-md">
-                <li class="list-group-item">Updated: {{comp.updated | date:'short'}}</li>
-                <li class="list-group-item">Started: {{comp.startDate | date:'short'}}</li>
-                <li class="list-group-item">Order: {{comp.order}}</li>
-            </ul>
-
-            <selections-list [selections]="comp.selections"></selections-list>
+            <competition-status [competition]="competition" class="pull-sm-right"></competition-status>
 
         </div>
     </li>

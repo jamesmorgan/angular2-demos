@@ -1,43 +1,46 @@
-<!--{{competition | json}}-->
+<div class="media">
+    <div class="media-left">
+        <a href="#">
+            <img class="media-object" data-src="{{ competition?.image }}" alt="{{ competition?.shortName }}">
+        </a>
+    </div>
+    <div class="media-body">
+        <h2 class="media-heading">{{ competition?.name }}</h2>
 
-<ul class="media-list">
-    <li class="media">
-        <div class="media-left">
-            <a href="#">
-                <img class="media-object" data-src="{{ competition?.image }}" alt="{{ competition?.shortName }}">
-            </a>
+        <p>
+            {{ competition?.description }}
+        </p>
+
+        <p *ngIf="competition">
+            <competition-status [competition]="competition" class="pull-sm-right"></competition-status>
+        </p>
+
+        <ul class="list-group bottom-margin-md">
+            <li class="list-group-item" *ngIf="competition && competition.updated">
+                Updated: {{competition.updated | date:'short'}}
+            </li>
+            <li class="list-group-item" *ngIf="competition && competition.start">
+                Start: {{competition.start | date:'short'}}
+            </li>
+            <li class="list-group-item">Order: {{competition?.order}}</li>
+        </ul>
+
+        <div class="bottom-margin-md" *ngIf="competition && competition.selections">
+            <selections-list [selections]="competition.selections"></selections-list>
         </div>
-        <div class="media-body">
-            <h2 class="media-heading">name: {{ competition?.name }}</h2>
 
-            <p>
-                description: {{ competition?.description }}
-            </p>
+        <div>
+            <select [(ngModel)]="newSelection">
+                <option *ngFor="#selection of selections" [(value)]="selection.name">{{selection.name}}</option>
+            </select>
 
-            <p>
-                <em>{{competition?.game?.value }}</em>
-            </p>
+            <span *ngIf="newSelection">
+                {{ newSelection.name }}
+                {{ newSelection | json }}
+            </span>
 
-            <div class="bottom-margin-md" *ngIf="competition">
-                status:
-                <competition-status [competition]="competition"></competition-status>
-            </div>
-
-            <ul class="list-group bottom-margin-md">
-                <li class="list-group-item" *ngIf="competition && competition.updated">
-                    Updated: {{competition.updated | date:'short'}}
-                </li>
-                <li class="list-group-item" *ngIf="competition && competition.startDate">
-                    Started: {{competition.startDate | date:'short'}}
-                </li>
-                <li class="list-group-item">Order: {{competition?.order}}</li>
-            </ul>
-
-            <div class="bottom-margin-md" *ngIf="competition && competition.selections">
-                <selections-list [selections]="competition.selections"></selections-list>
-            </div>
-
+            <button (click)="addNewSelection()" class="btn btn-secondary btn-sm pull-sm-right">Add</button>
         </div>
-    </li>
-</ul>
+    </div>
+</div>
 

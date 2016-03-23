@@ -1,3 +1,13 @@
+import {Component, OnInit, OnDestroy} from "angular2/core";
+import {RouteParams} from "angular2/router";
+import {CompetitionsService} from "../core/services/CompetitionsService";
+import {ID} from "../core/domain/ID";
+import {Competition} from "../core/domain/Competition";
+import {Selection} from "../core/domain/Selection";
+import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
+import {SelectionsService} from "../core/services/SelectionsService";
+import {Subscription} from "rxjs/Subscription";
+
 import {Component, OnInit} from "angular2/core";
 import {RouteParams, CanActivate, OnActivate, ComponentInstruction} from "angular2/router";
 import {CompetitionsService} from "../core/services/CompetitionsService";
@@ -5,6 +15,7 @@ import {ID} from "../core/domain/ID";
 import {Competition} from "../core/domain/Competition";
 import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
 import {CompetitionStatusComponent} from "../competition-status.component/competition-status.component";
+
 
 // TODO there seems to be no true alternatives of document way of route resolves?
 /**
@@ -26,16 +37,30 @@ import {CompetitionStatusComponent} from "../competition-status.component/compet
     templateUrl: 'app/competition-edit.component/competition-edit.component.html',
     styleUrls: ['app/competition-edit.component/competition-edit.component.css'],
     directives: [
-        SelectionsListComponent, CompetitionStatusComponent
+        SelectionsListComponent,
+        CompetitionStatusComponent
     ]
 })
-export class CompetitionEditComponent implements OnInit, OnActivate {
+export class CompetitionEditComponent implements OnInit, OnActivate, OnDestroy {
 
     /** Public data */
     competition:Competition;
+    selections:Selection[];
+    newSelection:Selection;
+
+    private _selectionsSubscription:Subscription;
 
     constructor(private _routeParams:RouteParams,
-                private _competitionsService:CompetitionsService) {
+                private _competitionsService:CompetitionsService,
+                private _selectionsService:SelectionsService) {
+        // Subscribe an changes which may happen
+        this._selectionsSubscription = this._selectionsService.selectionsChanged$.subscribe((selections) => {
+            this.selections = selections;
+        });
+    }
+
+    addNewSelection() {
+        console.log(this.newSelection);
     }
 
     routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any {
@@ -55,5 +80,8 @@ export class CompetitionEditComponent implements OnInit, OnActivate {
                 () => console.log('Loaded competition', this.competition)
             );
     }
-
+    
+    ngOnDestroy():any {
+        this._selectionsSubscription.unsubscribe(); // prevent memory leak when component destroyed
+    }
 }

@@ -64,7 +64,7 @@ export class CompetitionsService {
     }
 
     public updateStatus(compId:ID, status:Status):void {
-        // FIXME this wont work if the users has not already populate the this.competitions list
+        // FIXME this won't work if the users has not already populate the this.competitions list
         var compIdx = this.competitions.findIndex((comp:Competition) => {
             return comp._id.value === compId.value;
         });
