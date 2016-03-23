@@ -31,13 +31,17 @@
 
         <div>
             <select [(ngModel)]="newSelection">
-                <option *ngFor="#selection of selections" [(value)]="selection.name">{{selection.name}}</option>
+                <option *ngFor="#selection of selections" [(value)]="selection._id.value">{{selection.name}}</option>
             </select>
 
             <span *ngIf="newSelection">
                 {{ newSelection.name }}
                 {{ newSelection | json }}
             </span>
+
+            <div *ngFor="#selection of selections">
+                {{ selection | json }}
+            </div>
 
             <button (click)="addNewSelection()" class="btn btn-secondary btn-sm pull-sm-right">Add</button>
         </div>
