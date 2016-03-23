@@ -9,10 +9,12 @@ export class SelectionAddComponent  {
 
     /** Public data */
     @Input() selections:Selection[];
-    // @Input() potIndex:number;
+    // @Input() potIndex:number; // will use this when I sort the selections correctly for display
+    newSelectionIdStr:String;
     newSelection:Selection;
 
     addNewSelection() {
-        console.log(this.newSelection);
+        // FIXME - do I need to do this; see discussion: https://github.com/angular/angular/issues/4843
+        this.newSelection = this.selections.find((obj:Selection) => obj._id.value === this.newSelectionIdStr);
     }
 }
