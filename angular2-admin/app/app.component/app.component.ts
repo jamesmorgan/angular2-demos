@@ -7,6 +7,7 @@ import {CompetitionApi} from "../core/api/CompetitionApi";
 import {SelectionsService} from "../core/services/SelectionsService";
 import {AdminCompetitionDashboardComponent} from "../admin-competition-dashboard.component/admin-competition-dashboard.component";
 import {CompetitionEditComponent} from "../competition-edit.component/competition-edit.component";
+import {CompetitionAddFormComponent} from "../competition-add-form.component/competition-add-form.component";
 
 @Component({
     selector: 'my-app',
@@ -24,6 +25,7 @@ import {CompetitionEditComponent} from "../competition-edit.component/competitio
 @RouteConfig([
     {path: '/admin/competition', name: 'AdminCompetitionDashboard', component: AdminCompetitionDashboardComponent, useAsDefault: true},
     {path: '/admin/competition/edit/:competitionId', name: 'AdminCompetitionEdit', component: CompetitionEditComponent},
+    {path: '/admin/competition/add', name: 'AdminCompetitionAdd', component: CompetitionAddFormComponent},
     {path: '/admin/users', name: 'AdminUsersDashboard', component: AdminUsersDashboardComponent}
 ])
 export class AppComponent {

@@ -3,12 +3,14 @@ import {CompetitionsListComponent} from "../competitions-list.component/competit
 import {Competition} from "../core/domain/Competition";
 import {CompetitionsService} from "../core/services/CompetitionsService";
 import {Subscription} from "rxjs/Subscription";
+import {ROUTER_DIRECTIVES} from "angular2/router";
 
 @Component({
     selector: 'admin-dashboard',
     templateUrl: 'app/admin-competition-dashboard.component/admin-competition-dashboard.component.html',
     styleUrls: ['app/admin-competition-dashboard.component/admin-competition-dashboard.component.css'],
     directives: [
+        ROUTER_DIRECTIVES,
         CompetitionsListComponent
     ]
 })
