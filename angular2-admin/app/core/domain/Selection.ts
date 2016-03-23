@@ -11,15 +11,16 @@ export class Selection {
     sport:String;
     avatar:String;
 
-    fromJson(selection) {
-        this._id = new ID(selection._id);
-        this.name = selection.name;
-        this.score = selection.score;
-        this.potIndex = selection.potIndex;
-        this.multiplier = selection.multiplier;
-        this.handicap = selection.handicap;
-        this.sport = selection.sport;
-        this.avatar = selection.avatar;
-        return this;
+    static fromJson(selection):Selection {
+        var newSelection = new Selection();
+        newSelection._id = new ID(selection._id);
+        newSelection.name = selection.name;
+        newSelection.score = selection.score;
+        newSelection.potIndex = selection.potIndex;
+        newSelection.multiplier = selection.multiplier;
+        newSelection.handicap = selection.handicap;
+        newSelection.sport = selection.sport;
+        newSelection.avatar = selection.avatar;
+        return newSelection;
     }
 }

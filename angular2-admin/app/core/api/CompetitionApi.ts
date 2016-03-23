@@ -29,10 +29,10 @@ export class CompetitionApi {
     }
 
     findCompetition(compId:ID):Observable<Competition> {
-        return this._http.get(this.BASE_URL + '/competition/' + compId.toString())
+        return this._http.get(this.BASE_URL + '/competition/' + compId.value)
             .map(res => res.json())
             .map((competition)=> {
-                return new Competition().fromJson(competition);
+                return Competition.fromJson(competition);
             });
     }
 
@@ -42,35 +42,35 @@ export class CompetitionApi {
         };
 
         // /auth/ URLs are protected by the middleware
-        return this._http.put(this.BASE_URL + '/auth/competition/selection/push/' + compId.toString(), JSON.stringify(payload), {
+        return this._http.put(this.BASE_URL + '/auth/competition/selection/push/' + compId.value, JSON.stringify(payload), {
             headers: CompetitionApi.json()
         });
     }
-    
+
     updateScore(compId:ID, selectionId:ID, score:number) {
         var payload = {
-            selectionId: selectionId.toString,
+            selectionId: selectionId.value,
             score: score
         };
 
         // /auth/ URLs are protected by the middleware
-        return this._http.put(this.BASE_URL + '/auth/competition/push/' + compId.toString(), JSON.stringify(payload), {
+        return this._http.put(this.BASE_URL + '/auth/competition/push/' + compId.value, JSON.stringify(payload), {
             headers: CompetitionApi.json()
         });
     }
 
     updateStatus(compId:ID, status:Status):Observable<Response> {
         var payload = {
-            status: status
+            status: status.value
         };
-        return this._http.put(this.BASE_URL + '/competition/status/' + compId.toString(), JSON.stringify(payload), {
+        return this._http.put(this.BASE_URL + '/competition/status/' + compId.value, JSON.stringify(payload), {
             headers: CompetitionApi.json()
         });
     }
 
     private parseCompetitions(competitions:Object[]):Competition[] {
         return competitions.map(function (competition) {
-            return new Competition().fromJson(competition);
+            return Competition.fromJson(competition);
         });
     }
 

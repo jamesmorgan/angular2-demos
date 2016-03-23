@@ -1,5 +1,5 @@
 Status:
-<select [(ngModel)]="competition.status" (ngModelChange)="statusSelected()">
+<select [(ngModel)]="competition.status.value" (ngModelChange)="statusSelected()">
     <option *ngFor="#status of form.statuses" [(value)]="status.value">{{status.value}}</option>
 </select>
 

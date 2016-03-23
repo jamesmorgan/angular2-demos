@@ -1,33 +1,38 @@
-<div class="media" *ngIf="competition">
+<div class="media">
     <div class="media-left">
         <a href="#">
-            <img class="media-object" data-src="{{ competition.image }}" alt="{{ competition.shortName }}">
+            <img class="media-object" data-src="{{ competition?.image }}" alt="{{ competition?.shortName }}">
         </a>
     </div>
     <div class="media-body">
-        <h2 class="media-heading">{{ competition.name }}</h2>
+        <h2 class="media-heading">{{ competition?.name }}</h2>
 
         <p>
-            {{ competition.description }}
+            {{ competition?.description }}
         </p>
 
+        <div *ngIf="competition">
+            status: <competition-status [competition]="competition"></competition-status>
+        </div>
+
         <ul class="list-group bottom-margin-md">
-            <li class="list-group-item">Status: {{competition.status.toString()}}</li>
-            <li class="list-group-item">Updated: {{competition.updated | date:'short'}}</li>
-            <li class="list-group-item">Started: {{competition.start | date:'short'}}</li>
-            <li class="list-group-item">Order: {{competition.order}}</li>
+            <li class="list-group-item" *ngIf="competition && competition.updated">
+                Updated: {{competition.updated | date:'short'}}
+            </li>
+            <li class="list-group-item" *ngIf="competition && competition.start">
+                Start: {{competition.start | date:'short'}}
+            </li>
+            <li class="list-group-item">Order: {{competition?.order}}</li>
         </ul>
 
-        <hr />
+        <div class="bottom-margin-md" *ngIf="competition && competition.selections">
+            <selections-list [selections]="competition.selections"></selections-list>
+        </div>
 
-        <selections-list [selections]="competition.selections"></selections-list>
-
+        Selections:
+        <select [(ngModel)]="addSelection">
+            <option *ngFor="#selection of selections" [(value)]="selection._id">{{selection.name}}</option>
+        </select>
     </div>
 </div>
-
-Selections:
-<select [(ngModel)]="addSelection">
-    <option *ngFor="#selection of selections" [(value)]="selection._id">{{selection.name}}</option>
-</select>
-
 

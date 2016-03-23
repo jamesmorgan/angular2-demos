@@ -2,7 +2,6 @@ import {Component, OnDestroy, Input} from "angular2/core";
 import {Router} from "angular2/router";
 import {Competition} from "../core/domain/Competition";
 import {CompetitionStatusComponent} from "../competition-status.component/competition-status.component";
-import {DatePipe} from "angular2/common";
 
 @Component({
     selector: 'competitions-list',
@@ -10,8 +9,7 @@ import {DatePipe} from "angular2/common";
     styleUrls: ['app/competitions-list.component/competitions-list.component.css'],
     directives: [
         CompetitionStatusComponent
-    ],
-    pipes: [DatePipe]
+    ]
 })
 export class CompetitionsListComponent implements OnDestroy {
 
@@ -23,7 +21,7 @@ export class CompetitionsListComponent implements OnDestroy {
     }
 
     loadCompetition(competition) {
-        this._router.navigate(['AdminCompetitionEdit', {competitionId: competition._id.toString()}]);
+        this._router.navigate(['AdminCompetitionEdit', {competitionId: competition._id.value}]);
     }
 
     ngOnDestroy() {

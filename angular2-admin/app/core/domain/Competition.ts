@@ -15,21 +15,22 @@ export class Competition {
     status:Status;
     order:boolean;
     image:String;
-
-    fromJson(comp) {
-        this._id = new ID(comp._id);
-        this.name = comp.name;
-        this.game = new ID(comp.game);
-        this.description = comp.description;
-        this.shortName = comp.shortName;
-        this.updated = new Date(comp.updated * 1000); // unix -> js date
-        this.start = new Date(comp.start * 1000); // unix -> js date
-        this.status = new Status(comp.status);
-        this.order = comp.order;
-        this.image = comp.image;
-        this.selections = comp.selections.map(function (selection) {
-            return new Selection().fromJson(selection);
+    
+    static fromJson(comp):Competition {
+        var competition = new Competition();
+        competition._id = new ID(comp._id);
+        competition.name = comp.name;
+        competition.game = new ID(comp.game);
+        competition.description = comp.description;
+        competition.shortName = comp.shortName;
+        competition.updated = new Date(comp.updated * 1000); // unix -> js date
+        competition.start = new Date(comp.start * 1000); // unix -> js date
+        competition.status = new Status(comp.status);
+        competition.order = comp.order;
+        competition.image = comp.image;
+        competition.selections = comp.selections.map(function (selection) {
+            return Selection.fromJson(selection);
         });
-        return this;
+        return competition;
     }
 }

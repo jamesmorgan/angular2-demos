@@ -8,6 +8,15 @@ import {SelectionsListComponent} from "../selections-list.component/selections-l
 import {SelectionsService} from "../core/services/SelectionsService";
 import {Subscription} from "rxjs/Subscription";
 
+import {Component, OnInit} from "angular2/core";
+import {RouteParams, CanActivate, OnActivate, ComponentInstruction} from "angular2/router";
+import {CompetitionsService} from "../core/services/CompetitionsService";
+import {ID} from "../core/domain/ID";
+import {Competition} from "../core/domain/Competition";
+import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
+import {CompetitionStatusComponent} from "../competition-status.component/competition-status.component";
+
+
 // TODO there seems to be no true alternatives of document way of route resolves?
 /**
  * Then there is @CanActivate.
@@ -15,28 +24,28 @@ import {Subscription} from "rxjs/Subscription";
  * Its parameters are (next, previous) which are the components you're routing to and the component
  * you've come from (or null if you have no history) respectively.
  */
-// @CanActivate(
-//     (next) => {
-//         var competitionId = this._routeParams.get('competitionId');
-//         return this._competitionsService.findCompetition(new ID(competitionId))
-//             .toPromise((message:Competition) => {
-//                 return true; //truthy lets route continue, false stops routing
-//             })
-//     }
-// )
+@CanActivate(
+    (next, prev) => {
+        console.log('@CanActivate() -> next', next);
+        console.log('@CanActivate() -> prev', prev);
+        // TODO this would be good for auth -> could always expose a /auth/check API or check some web token?
+        return true;
+    }
+)
 @Component({
     selector: 'competition-edit',
     templateUrl: 'app/competition-edit.component/competition-edit.component.html',
     styleUrls: ['app/competition-edit.component/competition-edit.component.css'],
     directives: [
-        SelectionsListComponent
+        SelectionsListComponent,
+        CompetitionStatusComponent
     ]
 })
-export class CompetitionEditComponent implements OnInit, OnDestroy {
+export class CompetitionEditComponent implements OnInit, OnActivate, OnDestroy {
 
     /** Public data */
-    selections:Selection[];
     competition:Competition;
+    selections:Selection[];
 
     private _selectionsSubscription:Subscription;
 
@@ -49,16 +58,24 @@ export class CompetitionEditComponent implements OnInit, OnDestroy {
         });
     }
 
+    routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any {
+        console.log('routerOnActivate() -> nextInstruction', nextInstruction);
+        console.log('routerOnActivate() -> prevInstruction', prevInstruction);
+    }
+
     ngOnInit():any {
         var competitionId:string = this._routeParams.get('competitionId');
         console.log('Calling OnInit CompetitionEditComponent with competitionId: ' + competitionId);
         this._competitionsService.findCompetition(new ID(competitionId))
             .subscribe(
-                (data) => this.competition = new Competition().fromJson(data),
-                (err) => console.error(err)
+                (data:Competition) => {
+                    this.competition = data;
+                },
+                (err) => console.error(err),
+                () => console.log('Loaded competition', this.competition)
             );
     }
-
+    
     ngOnDestroy():any {
         this._selectionsSubscription.unsubscribe(); // prevent memory leak when component destroyed
     }

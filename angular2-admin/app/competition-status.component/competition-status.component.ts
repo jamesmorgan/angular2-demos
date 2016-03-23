@@ -1,11 +1,7 @@
-import {Component} from 'angular2/core';
+import {Component, Input} from "angular2/core";
 import {CompetitionsService} from "../core/services/CompetitionsService";
-import {Competition} from "../core/domain/Competition";
-import {OnDestroy} from "angular2/core";
-import {Input} from "angular2/core";
 import {Status} from "../core/domain/Status";
-import {OnInit} from "angular2/core";
-import {OnChanges} from "angular2/core";
+import {Competition} from "../core/domain/Competition";
 
 @Component({
     selector: 'competition-status',
