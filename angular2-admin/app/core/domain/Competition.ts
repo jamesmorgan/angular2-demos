@@ -11,6 +11,7 @@ export class Competition {
     shortName:String;
     updated:Date;
     start:Date;
+    pots:String[];
     selections:Selection[];
     status:Status;
     order:boolean;
@@ -28,6 +29,7 @@ export class Competition {
         competition.status = new Status(comp.status);
         competition.order = comp.order;
         competition.image = comp.image;
+        competition.pots = comp.pots;
         competition.selections = comp.selections.map(function (selection) {
             return Selection.fromJson(selection);
         });

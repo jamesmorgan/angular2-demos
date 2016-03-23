@@ -22,15 +22,20 @@
             <li class="list-group-item" *ngIf="competition && competition.start">
                 Start: {{competition.start | date:'short'}}
             </li>
-            <li class="list-group-item">Order: {{competition?.order}}</li>
+            <li class="list-group-item">
+                Order: {{competition?.order}}
+            </li>
+            <li class="list-group-item">
+                Pots: {{competition?.pots}}
+            </li>
         </ul>
 
         <div class="bottom-margin-md" *ngIf="competition && competition.selections">
             <selections-list [selections]="competition.selections"></selections-list>
         </div>
 
-        <div>
-            <selection-add [selections]="selections"></selection-add>
+        <div *ngIf="competition && competition.selections && competition.pots">
+            <selection-add [selections]="selections" [pots]="competition.pots"></selection-add>
         </div>
     </div>
 </div>
