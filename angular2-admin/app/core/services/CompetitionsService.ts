@@ -62,6 +62,10 @@ export class CompetitionsService {
     public createCompetition(comp:Competition) {
         return this._competitionApi.create(comp);
     }
+    
+    public addSelectionToCompetition(compId:ID, selection:Selection) {
+        return this._competitionApi.saveSelectionForComp(compId, selection);
+    }
 
     public updateStatus(compId:ID, status:Status):void {
         // FIXME this won't work if the users has not already populate the this.competitions list
