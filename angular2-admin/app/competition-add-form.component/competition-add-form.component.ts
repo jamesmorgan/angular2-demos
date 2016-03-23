@@ -1,4 +1,6 @@
-import {Component, OnInit, OnDestroy} from "angular2/core";
+import {Component} from "angular2/core";
+import {Competition} from "../core/domain/Competition";
+import {Status} from "../core/domain/Status";
 
 @Component({
     selector: 'competition-add-form',
@@ -6,16 +8,25 @@ import {Component, OnInit, OnDestroy} from "angular2/core";
     styleUrls: ['app/competition-add-form.component/competition-add-form.component.css'],
     directives: []
 })
-export class CompetitionAddFormComponent implements OnInit, OnDestroy {
+export class CompetitionAddFormComponent {
+
+    model:Competition = new Competition();
+
+    form = {
+        statuses: [...Status.Statuses]
+    };
 
     constructor() {
     }
 
-    ngOnInit():any {
+    submitted = false;
 
+    onSubmit() {
+        this.submitted = true;
     }
 
-    ngOnDestroy():any {
-
+    // TODO: Remove this when we're done
+    get diagnostic() {
+        return JSON.stringify(this.model);
     }
 }

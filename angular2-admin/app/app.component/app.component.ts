@@ -24,8 +24,8 @@ import {CompetitionAddFormComponent} from "../competition-add-form.component/com
 })
 @RouteConfig([
     {path: '/admin/competition', name: 'AdminCompetitionDashboard', component: AdminCompetitionDashboardComponent, useAsDefault: true},
-    {path: '/admin/competition/edit/:competitionId', name: 'AdminCompetitionEdit', component: CompetitionEditComponent},
     {path: '/admin/competition/add', name: 'AdminCompetitionAdd', component: CompetitionAddFormComponent},
+    {path: '/admin/competition/edit/:competitionId', name: 'AdminCompetitionEdit', component: CompetitionEditComponent},
     {path: '/admin/users', name: 'AdminUsersDashboard', component: AdminUsersDashboardComponent}
 ])
 export class AppComponent {
