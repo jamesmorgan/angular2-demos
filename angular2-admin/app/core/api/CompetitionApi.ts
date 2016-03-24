@@ -35,18 +35,14 @@ export class CompetitionApi {
             });
     }
 
-    saveSelectionForComp(compId:ID, selection:Selection) {
-        var payload = {
-            selection: selection
-        };
-
+    saveSelectionForComp(compId:ID, selection:Selection):Observable<Response> {
         // /auth/ URLs are protected by the middleware
-        return this._http.put(BASE_URL + '/auth/competition/selection/push/' + compId.value, JSON.stringify(payload), {
+        return this._http.put(BASE_URL + '/auth/competition/selection/push/' + compId.value, JSON.stringify(selection), {
             headers: json()
         });
     }
 
-    updateScore(compId:ID, selectionId:ID, score:number) {
+    updateScore(compId:ID, selectionId:ID, score:number):Observable<Response> {
         var payload = {
             selectionId: selectionId.value,
             score: score
