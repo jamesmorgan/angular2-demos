@@ -26,11 +26,16 @@
             </div>
 
             <div class="form-group">
-                TODO list games
+                <label for="game">Game</label>
+                <select id="game" [(ngModel)]="model.gameId" class="form-control" required>
+                    <option *ngFor="#game of form.games" [(value)]="game._id">{{game.name}} - {{game.shortName}}</option>
+                </select>
             </div>
 
             <div class="form-group">
-                TODO start date
+                <label for="startDate">Start Date</label>
+                <input id="startDate" type="Date" class="form-control"
+                       [(ngModel)]="model.start" required>
             </div>
 
             <div class="form-group">
@@ -39,7 +44,7 @@
 
             <div class="form-group">
                 <label for="status">Opening Status</label>
-                <select id="status" [(ngModel)]="model.status" required>
+                <select id="status" [(ngModel)]="form.newStatus" (ngModelChange)="onStatusSelected(form.newStatus)"  class="form-control" required>
                     <option *ngFor="#status of form.statuses" [(value)]="status.value">{{status.value}}</option>
                 </select>
             </div>
@@ -49,7 +54,9 @@
             </div>
 
             <div class="form-group">
-                TODO image
+                <label for="image">Image</label>
+                <input id="image" type="text" class="form-control"
+                       [(ngModel)]="model.image" required>
             </div>
 
             <button type="submit" class="btn btn-default">Submit</button>

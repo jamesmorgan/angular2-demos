@@ -42,9 +42,10 @@ export class FormCompetition {
     game:string;
     description:string;
     shortName:string;
+    gameId:string;
     start:Date;
     selections:Selection[];
-    status:string;
+    status:Status;
     order:boolean;
     image:string;
 }

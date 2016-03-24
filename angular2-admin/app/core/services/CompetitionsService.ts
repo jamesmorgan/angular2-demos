@@ -61,7 +61,7 @@ export class CompetitionsService {
     public createCompetition(comp:Competition) {
         return this._competitionApi.create(comp);
     }
-    
+
     public addSelectionToCompetition(compId:String, selection:Selection) {
         return this._competitionApi.saveSelectionForComp(compId, selection)
             .subscribe(

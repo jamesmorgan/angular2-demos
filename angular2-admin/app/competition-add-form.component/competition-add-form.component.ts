@@ -28,15 +28,9 @@ export class CompetitionAddFormComponent implements OnDestroy {
         });
     }
 
-    submitted = false;
-
-    onSubmit() {
-        this.submitted = true;
-    }
-
-    // TODO: Remove this when we're done
-    get diagnostic() {
-        return JSON.stringify(this.model);
+    onStatusSelected(id){
+        console.log('onStatusSelected(id)', id);
+        this.model.status = this.form.statuses.find((obj) => obj._id === id)
     }
 
     ngOnDestroy():any {

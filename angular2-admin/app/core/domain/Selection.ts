@@ -9,6 +9,12 @@ export class Selection {
     score:number;
     sport:String;
     avatar:String;
+    
+    setSelectionDefaults() {
+        this.score = 0;
+        this.multiplier = 1;
+        this.handicap = 0;
+    }
 
     static fromJson(selection):Selection {
         var newSelection = new Selection();
