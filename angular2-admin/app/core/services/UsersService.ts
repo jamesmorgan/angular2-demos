@@ -1,9 +1,8 @@
 import {Injectable} from "angular2/core";
-import {Http} from "angular2/http";
-import 'rxjs/add/operator/share';
-
 import {User} from "../domain/User";
 import {Subject} from "rxjs/Subject";
+import {UserApi} from "../api/UserApi";
+import "rxjs/add/operator/share";
 
 @Injectable()
 export class UsersService {
@@ -33,16 +32,16 @@ export class UsersService {
          */
         .share();
 
-    constructor(private _http:Http) {
+    constructor(private _userApi:UserApi) {
         // Get the data on creation
-        _http.get('http://localhost:8080/users')
+        this._userApi.load()
             .subscribe(
                 data => {
-                    this.parseUsers(data.json());
+                    this.users = data;
                     this.publishToObservers();
                 },
                 err => console.error('Failed to load users', err),
-                () => console.log('Loaded users')
+                () => console.log('Loaded users', this.users)
             );
     }
 
@@ -50,10 +49,4 @@ export class UsersService {
         this._usersSource.next(this.users); // Push a new copy to all Subscribers.
     }
 
-    private parseUsers(users:Object[]):void {
-        this.users = users.map(function (user) {
-            return new User().fromJson(user);
-        });
-        // console.log('Parsed users', this.users);
-    }
 }

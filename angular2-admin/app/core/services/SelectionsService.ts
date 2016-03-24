@@ -1,9 +1,8 @@
 import {Injectable} from "angular2/core";
-import {Http} from "angular2/http";
-import 'rxjs/add/operator/share';
-
 import {Selection} from "../domain/Selection";
 import {Subject} from "rxjs/Subject";
+import {SelectionApi} from "../api/SelectionApi";
+import "rxjs/add/operator/share";
 
 @Injectable()
 export class SelectionsService {
@@ -33,16 +32,15 @@ export class SelectionsService {
          */
         .share();
 
-    constructor(private _http:Http) {
-        // Get the data on creation
-        _http.get('http://localhost:8080/selections')
+    constructor(private _selectionApi:SelectionApi) {
+        this._selectionApi.load()
             .subscribe(
                 data => {
-                    this.parseSelections(data.json());
+                    this.selections = data;
                     this.publishToObservers();
                 },
                 err => console.error('Failed to load selections', err),
-                () => console.log('Loaded selections')
+                () => console.log('Loaded selections', this.selections)
             );
     }
 
@@ -50,10 +48,4 @@ export class SelectionsService {
         this._selectionsSource.next(this.selections); // Push a new copy to all Subscribers.
     }
 
-    private parseSelections(selections:Object[]):void {
-        this.selections = selections.map(function (selection) {
-            return Selection.fromJson(selection);
-        });
-        // console.log('Parsed selections', this.selections);
-    }
 }

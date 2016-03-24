@@ -10,6 +10,8 @@ import {CompetitionEditComponent} from "../competition-edit.component/competitio
 import {CompetitionAddFormComponent} from "../competition-add-form.component/competition-add-form.component";
 import {GamesService} from "../core/services/GameService";
 import {GameApi} from "../core/api/GameApi";
+import {SelectionApi} from "../core/api/SelectionApi";
+import {UserApi} from "../core/api/UserApi";
 
 @Component({
     selector: 'my-app',
@@ -19,8 +21,8 @@ import {GameApi} from "../core/api/GameApi";
     providers: [
         ROUTER_PROVIDERS,
         CompetitionsService, CompetitionApi,
-        UsersService,
-        SelectionsService,
+        UsersService, UserApi,
+        SelectionsService, SelectionApi,
         GamesService, GameApi
     ],
 })
