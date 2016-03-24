@@ -7,7 +7,7 @@ import {Selection} from "../core/domain/Selection";
     templateUrl: 'app/selection-add.component/selection-add.component.html',
     styleUrls: ['app/selection-add.component/selection-add.component.css'],
 })
-export class SelectionAddComponent  {
+export class SelectionAddComponent {
 
     /** Public data */
     @Input() selections:Selection[];

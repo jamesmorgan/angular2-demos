@@ -28,9 +28,9 @@ export class CompetitionAddFormComponent implements OnDestroy {
         });
     }
 
-    onStatusSelected(id){
-        console.log('onStatusSelected(id)', id);
-        this.model.status = this.form.statuses.find((obj) => obj._id === id)
+    onStatusSelected(value) {
+        console.log('onStatusSelected(value)', value);
+        this.model.status = this.form.statuses.find((obj) => obj.value === value)
     }
 
     ngOnDestroy():any {
