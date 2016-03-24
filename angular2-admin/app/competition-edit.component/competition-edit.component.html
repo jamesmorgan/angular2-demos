@@ -35,7 +35,7 @@
         </div>
 
         <div *ngIf="competition && competition.selections && competition.pots">
-            <selection-add [selections]="selections" [pots]="competition.pots"></selection-add>
+            <selection-add [selections]="selections" [pots]="competition.pots" [compId]="competition._id"></selection-add>
         </div>
     </div>
 </div>
