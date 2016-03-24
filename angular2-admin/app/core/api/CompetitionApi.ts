@@ -1,27 +1,26 @@
-import {Http, Response, Headers} from "angular2/http";
+import {Http, Response} from "angular2/http";
 import {Observable} from "rxjs/Observable";
 import {Injectable} from "angular2/core";
 import {ID} from "../domain/ID";
 import {Status} from "../domain/Status";
 import {Competition} from "../domain/Competition";
+import {BASE_URL, json} from "./Api";
 
 
 @Injectable()
 export class CompetitionApi {
 
-    private BASE_URL:String = 'http://localhost:8080';
-
     constructor(private _http:Http) {
     }
 
     create(comp:Competition) {
-        return this._http.post(this.BASE_URL + '/auth/competition', JSON.stringify(comp), {
-            headers: CompetitionApi.json()
+        return this._http.post(BASE_URL + '/auth/competition', JSON.stringify(comp), {
+            headers: json()
         });
     }
 
     load():Observable<Competition[]> {
-        return this._http.get(this.BASE_URL + '/competitions')
+        return this._http.get(BASE_URL + '/competitions')
             .map(res => res.json())
             .map((comps)=> {
                 return this.parseCompetitions(comps);
@@ -29,7 +28,7 @@ export class CompetitionApi {
     }
 
     findCompetition(compId:ID):Observable<Competition> {
-        return this._http.get(this.BASE_URL + '/competition/' + compId.value)
+        return this._http.get(BASE_URL + '/competition/' + compId.value)
             .map(res => res.json())
             .map((competition)=> {
                 return Competition.fromJson(competition);
@@ -42,8 +41,8 @@ export class CompetitionApi {
         };
 
         // /auth/ URLs are protected by the middleware
-        return this._http.put(this.BASE_URL + '/auth/competition/selection/push/' + compId.value, JSON.stringify(payload), {
-            headers: CompetitionApi.json()
+        return this._http.put(BASE_URL + '/auth/competition/selection/push/' + compId.value, JSON.stringify(payload), {
+            headers: json()
         });
     }
 
@@ -54,8 +53,8 @@ export class CompetitionApi {
         };
 
         // /auth/ URLs are protected by the middleware
-        return this._http.put(this.BASE_URL + '/auth/competition/push/' + compId.value, JSON.stringify(payload), {
-            headers: CompetitionApi.json()
+        return this._http.put(BASE_URL + '/auth/competition/push/' + compId.value, JSON.stringify(payload), {
+            headers: json()
         });
     }
 
@@ -63,8 +62,8 @@ export class CompetitionApi {
         var payload = {
             status: status.value
         };
-        return this._http.put(this.BASE_URL + '/competition/status/' + compId.value, JSON.stringify(payload), {
-            headers: CompetitionApi.json()
+        return this._http.put(BASE_URL + '/competition/status/' + compId.value, JSON.stringify(payload), {
+            headers: json()
         });
     }
 
@@ -72,12 +71,6 @@ export class CompetitionApi {
         return competitions.map(function (competition) {
             return Competition.fromJson(competition);
         });
-    }
-
-    private static json():Headers {
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return headers;
     }
 
 }

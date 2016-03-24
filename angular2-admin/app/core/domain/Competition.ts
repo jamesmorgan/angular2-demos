@@ -34,3 +34,16 @@ export class Competition {
         return competition;
     }
 }
+
+//TODO I needed a simplified model as I could not bind to the Status Object?
+export class FormCompetition {
+    name:string;
+    game:string;
+    description:string;
+    shortName:string;
+    start:Date;
+    selections:Selection[];
+    status:string;
+    order:boolean;
+    image:string;
+}

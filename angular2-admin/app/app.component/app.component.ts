@@ -8,6 +8,8 @@ import {SelectionsService} from "../core/services/SelectionsService";
 import {AdminCompetitionDashboardComponent} from "../admin-competition-dashboard.component/admin-competition-dashboard.component";
 import {CompetitionEditComponent} from "../competition-edit.component/competition-edit.component";
 import {CompetitionAddFormComponent} from "../competition-add-form.component/competition-add-form.component";
+import {GamesService} from "../core/services/GameService";
+import {GameApi} from "../core/api/GameApi";
 
 @Component({
     selector: 'my-app',
@@ -16,10 +18,10 @@ import {CompetitionAddFormComponent} from "../competition-add-form.component/com
     directives: [ROUTER_DIRECTIVES],
     providers: [
         ROUTER_PROVIDERS,
-        CompetitionsService,
+        CompetitionsService, CompetitionApi,
         UsersService,
         SelectionsService,
-        CompetitionApi
+        GamesService, GameApi
     ],
 })
 @RouteConfig([

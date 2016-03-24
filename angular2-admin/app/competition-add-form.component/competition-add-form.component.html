@@ -39,7 +39,7 @@
 
             <div class="form-group">
                 <label for="status">Opening Status</label>
-                <select id="status" [(ngModel)]="model.status.value" required>
+                <select id="status" [(ngModel)]="model.status" required>
                     <option *ngFor="#status of form.statuses" [(value)]="status.value">{{status.value}}</option>
                 </select>
             </div>
