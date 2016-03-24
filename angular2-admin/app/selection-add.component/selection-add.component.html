@@ -1,0 +1,18 @@
+<form>
+    <fieldset class="form-group">
+        <label>Selection:</label>
+        <select [(ngModel)]="newSelectionIdStr" class="form-control">
+            <option *ngFor="#selection of selections" [(value)]="selection._id.value">{{selection.name}}</option>
+        </select>
+    </fieldset>
+
+    <div class="btn-group pull-sm-right" role="group" *ngIf="newSelectionIdStr">
+        <button *ngFor="#pot of pots; #potIndex = index" (click)="addNewSelection(potIndex)" class="btn btn-primary-outline btn-sm">Add to {{pot}}</button>
+    </div>
+
+</form>
+
+
+
+
+

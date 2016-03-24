@@ -22,24 +22,20 @@
             <li class="list-group-item" *ngIf="competition && competition.start">
                 Start: {{competition.start | date:'short'}}
             </li>
-            <li class="list-group-item">Order: {{competition?.order}}</li>
+            <li class="list-group-item">
+                Order: {{competition?.order}}
+            </li>
+            <li class="list-group-item">
+                Pots: {{competition?.pots}}
+            </li>
         </ul>
 
         <div class="bottom-margin-md" *ngIf="competition && competition.selections">
             <selections-list [selections]="competition.selections"></selections-list>
         </div>
 
-        <div>
-            <select [(ngModel)]="newSelection">
-                <option *ngFor="#selection of selections" [(value)]="selection.name">{{selection.name}}</option>
-            </select>
-
-            <span *ngIf="newSelection">
-                {{ newSelection.name }}
-                {{ newSelection | json }}
-            </span>
-
-            <button (click)="addNewSelection()" class="btn btn-secondary btn-sm pull-sm-right">Add</button>
+        <div *ngIf="competition && competition.selections && competition.pots">
+            <selection-add [selections]="selections" [pots]="competition.pots"></selection-add>
         </div>
     </div>
 </div>

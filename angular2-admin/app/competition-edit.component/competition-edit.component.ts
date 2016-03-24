@@ -15,6 +15,7 @@ import {ID} from "../core/domain/ID";
 import {Competition} from "../core/domain/Competition";
 import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
 import {CompetitionStatusComponent} from "../competition-status.component/competition-status.component";
+import {SelectionAddComponent} from "../selection-add.component/selection-add.component";
 
 
 // TODO there seems to be no true alternatives of document way of route resolves?
@@ -38,7 +39,8 @@ import {CompetitionStatusComponent} from "../competition-status.component/compet
     styleUrls: ['app/competition-edit.component/competition-edit.component.css'],
     directives: [
         SelectionsListComponent,
-        CompetitionStatusComponent
+        CompetitionStatusComponent,
+        SelectionAddComponent
     ]
 })
 export class CompetitionEditComponent implements OnInit, OnActivate, OnDestroy {
@@ -58,11 +60,7 @@ export class CompetitionEditComponent implements OnInit, OnActivate, OnDestroy {
             this.selections = selections;
         });
     }
-
-    addNewSelection() {
-        console.log(this.newSelection);
-    }
-
+    
     routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any {
         console.log('routerOnActivate() -> nextInstruction', nextInstruction);
         console.log('routerOnActivate() -> prevInstruction', prevInstruction);
