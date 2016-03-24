@@ -1,8 +1,7 @@
-import {ID} from "./ID";
 
 export class Selection {
 
-    _id:ID;
+    _id:String;
     name:String;
     potIndex:number;
     multiplier:number;
@@ -13,7 +12,7 @@ export class Selection {
 
     static fromJson(selection):Selection {
         var newSelection = new Selection();
-        newSelection._id = new ID(selection._id);
+        newSelection._id = selection._id;
         newSelection.name = selection.name;
         newSelection.score = selection.score;
         newSelection.potIndex = selection.potIndex;

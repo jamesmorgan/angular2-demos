@@ -30,12 +30,12 @@
             </li>
         </ul>
 
-        <div class="bottom-margin-md" *ngIf="competition && competition.selections">
+        <div *ngIf="competition && competition.selections">
             <selections-list [selections]="competition.selections"></selections-list>
         </div>
 
-        <div *ngIf="competition && competition.selections && competition.pots">
-            <selection-add [selections]="selections" [pots]="competition.pots"></selection-add>
+        <div *ngIf="competition && selections" class="col-sm-3">
+            <selection-add [selections]="selections" [pots]="competition.pots" [compId]="competition._id"></selection-add>
         </div>
     </div>
 </div>

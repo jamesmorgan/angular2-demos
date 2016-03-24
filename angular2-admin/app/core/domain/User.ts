@@ -1,8 +1,7 @@
-import {ID} from "./ID";
 
 export class User {
 
-    _id:ID;
+    _id:String;
     name:String;
     email:String;
     created:Date;

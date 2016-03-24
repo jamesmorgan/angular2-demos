@@ -1,19 +1,11 @@
 import {Component, OnInit, OnDestroy} from "angular2/core";
-import {RouteParams} from "angular2/router";
+import {RouteParams, CanActivate, OnActivate, ComponentInstruction} from "angular2/router";
 import {CompetitionsService} from "../core/services/CompetitionsService";
-import {ID} from "../core/domain/ID";
 import {Competition} from "../core/domain/Competition";
 import {Selection} from "../core/domain/Selection";
 import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
 import {SelectionsService} from "../core/services/SelectionsService";
 import {Subscription} from "rxjs/Subscription";
-
-import {Component, OnInit} from "angular2/core";
-import {RouteParams, CanActivate, OnActivate, ComponentInstruction} from "angular2/router";
-import {CompetitionsService} from "../core/services/CompetitionsService";
-import {ID} from "../core/domain/ID";
-import {Competition} from "../core/domain/Competition";
-import {SelectionsListComponent} from "../selections-list.component/selections-list.component";
 import {CompetitionStatusComponent} from "../competition-status.component/competition-status.component";
 import {SelectionAddComponent} from "../selection-add.component/selection-add.component";
 
@@ -69,7 +61,7 @@ export class CompetitionEditComponent implements OnInit, OnActivate, OnDestroy {
     ngOnInit():any {
         var competitionId:string = this._routeParams.get('competitionId');
         console.log('Calling OnInit CompetitionEditComponent with competitionId: ' + competitionId);
-        this._competitionsService.findCompetition(new ID(competitionId))
+        this._competitionsService.findCompetition(competitionId)
             .subscribe(
                 (data:Competition) => {
                     this.competition = data;

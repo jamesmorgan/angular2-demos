@@ -1,4 +1,5 @@
 import {Component, Input} from "angular2/core";
+import {CompetitionsService} from "../core/services/CompetitionsService";
 
 @Component({
     selector: 'selection-add',
@@ -10,19 +11,32 @@ export class SelectionAddComponent  {
     /** Public data */
     @Input() selections:Selection[];
     @Input() pots:String[];
+    @Input() compId:String;
+    
     newSelection:Selection;
-
     newSelectionIdStr:String;
+
+    constructor(private _competitionsService:CompetitionsService) {
+    }
 
     addNewSelection(potIndex:number) {
         // FIXME - do I need to do this; see discussion: https://github.com/angular/angular/issues/4843
-        this.newSelection = this.selections.find((obj:Selection) => obj._id.value === this.newSelectionIdStr);
+        this.newSelection = this.selections.find((obj:Selection) => obj._id === this.newSelectionIdStr);
         
         // update potIndex on selection
         this.newSelection.potIndex = potIndex;
+        this.setSelectionDefaults(this.newSelection);
 
         console.log(this.newSelection);
+        console.log(this.compId);
 
-        // add to comp
+        // add selected selection to comp
+        this._competitionsService.addSelectionToCompetition(this.compId, this.newSelection);
+    }
+
+    private setSelectionDefaults(selection:Selection) {
+        selection.score = 0;
+        selection.multiplier = 1;
+        selection.handicap = 0;
     }
 }
