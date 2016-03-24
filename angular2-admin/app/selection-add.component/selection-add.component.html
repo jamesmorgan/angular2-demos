@@ -2,7 +2,7 @@
     <fieldset class="form-group">
         <label>Selection:</label>
         <select [(ngModel)]="newSelectionIdStr" class="form-control">
-            <option *ngFor="#selection of selections" [(value)]="selection._id.value">{{selection.name}}</option>
+            <option *ngFor="#selection of selections" [(value)]="selection._id">{{selection.name}}</option>
         </select>
     </fieldset>
 

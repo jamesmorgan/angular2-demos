@@ -1,7 +1,6 @@
 import {Http, Response} from "angular2/http";
 import {Observable} from "rxjs/Observable";
 import {Injectable} from "angular2/core";
-import {ID} from "../domain/ID";
 import {Status} from "../domain/Status";
 import {Competition} from "../domain/Competition";
 import {BASE_URL, json} from "./Api";
@@ -27,38 +26,38 @@ export class CompetitionApi {
             });
     }
 
-    findCompetition(compId:ID):Observable<Competition> {
-        return this._http.get(BASE_URL + '/competition/' + compId.value)
+    findCompetition(compId:String):Observable<Competition> {
+        return this._http.get(BASE_URL + '/competition/' + compId)
             .map(res => res.json())
             .map((competition)=> {
                 return Competition.fromJson(competition);
             });
     }
 
-    saveSelectionForComp(compId:ID, selection:Selection):Observable<Response> {
+    saveSelectionForComp(compId:String, selection:Selection):Observable<Response> {
         // /auth/ URLs are protected by the middleware
-        return this._http.put(BASE_URL + '/auth/competition/selection/push/' + compId.value, JSON.stringify(selection), {
+        return this._http.put(BASE_URL + '/auth/competition/selection/push/' + compId, JSON.stringify(selection), {
             headers: json()
         });
     }
 
-    updateScore(compId:ID, selectionId:ID, score:number):Observable<Response> {
+    updateScore(compId:String, selectionId:String, score:number):Observable<Response> {
         var payload = {
-            selectionId: selectionId.value,
+            selectionId: selectionId,
             score: score
         };
 
         // /auth/ URLs are protected by the middleware
-        return this._http.put(BASE_URL + '/auth/competition/push/' + compId.value, JSON.stringify(payload), {
+        return this._http.put(BASE_URL + '/auth/competition/push/' + compId, JSON.stringify(payload), {
             headers: json()
         });
     }
 
-    updateStatus(compId:ID, status:Status):Observable<Response> {
+    updateStatus(compId:String, status:Status):Observable<Response> {
         var payload = {
             status: status.value
         };
-        return this._http.put(BASE_URL + '/competition/status/' + compId.value, JSON.stringify(payload), {
+        return this._http.put(BASE_URL + '/competition/status/' + compId, JSON.stringify(payload), {
             headers: json()
         });
     }

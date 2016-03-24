@@ -21,7 +21,7 @@ export class CompetitionsListComponent implements OnDestroy {
     }
 
     loadCompetition(competition) {
-        this._router.navigate(['AdminCompetitionEdit', {competitionId: competition._id.value}]);
+        this._router.navigate(['AdminCompetitionEdit', {competitionId: competition._id}]);
     }
 
     ngOnDestroy() {

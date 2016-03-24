@@ -1,5 +1,4 @@
 import {Component, Input} from "angular2/core";
-import {ID} from "../core/domain/ID";
 import {CompetitionsService} from "../core/services/CompetitionsService";
 
 @Component({
@@ -12,7 +11,7 @@ export class SelectionAddComponent  {
     /** Public data */
     @Input() selections:Selection[];
     @Input() pots:String[];
-    @Input() compId:ID;
+    @Input() compId:String;
     
     newSelection:Selection;
     newSelectionIdStr:String;
@@ -22,7 +21,7 @@ export class SelectionAddComponent  {
 
     addNewSelection(potIndex:number) {
         // FIXME - do I need to do this; see discussion: https://github.com/angular/angular/issues/4843
-        this.newSelection = this.selections.find((obj:Selection) => obj._id.value === this.newSelectionIdStr);
+        this.newSelection = this.selections.find((obj:Selection) => obj._id === this.newSelectionIdStr);
         
         // update potIndex on selection
         this.newSelection.potIndex = potIndex;

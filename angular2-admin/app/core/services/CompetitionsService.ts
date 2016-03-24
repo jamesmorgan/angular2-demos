@@ -3,7 +3,6 @@ import {Observable} from "rxjs/Observable";
 import {Competition} from "../domain/Competition";
 import {Subject} from "rxjs/Subject";
 import {Status} from "../domain/Status";
-import {ID} from "../domain/ID";
 import {CompetitionApi} from "../api/CompetitionApi";
 import "rxjs/add/operator/share";
 import "rxjs/add/operator/map";
@@ -55,7 +54,7 @@ export class CompetitionsService {
         this._competitionsSource.next(this.competitions); // Push a new copy to all Subscribers.
     }
 
-    public findCompetition(compId:ID):Observable<Competition> {
+    public findCompetition(compId:String):Observable<Competition> {
         return this._competitionApi.findCompetition(compId);
     }
 
@@ -63,14 +62,22 @@ export class CompetitionsService {
         return this._competitionApi.create(comp);
     }
     
-    public addSelectionToCompetition(compId:ID, selection:Selection) {
-        return this._competitionApi.saveSelectionForComp(compId, selection);
+    public addSelectionToCompetition(compId:String, selection:Selection) {
+        return this._competitionApi.saveSelectionForComp(compId, selection)
+            .subscribe(
+                res => {
+                    console.info('Successfully added selection', res);
+                    // this.competitions[compIdx].status = status;
+                    this.publishToObservers();
+                },
+                err => console.error('Failed to update status', err)
+            );
     }
 
-    public updateStatus(compId:ID, status:Status):void {
+    public updateStatus(compId:String, status:Status):void {
         // FIXME this won't work if the users has not already populate the this.competitions list
         var compIdx = this.competitions.findIndex((comp:Competition) => {
-            return comp._id.value === compId.value;
+            return comp._id === compId;
         });
 
         if (compIdx >= 0) {

@@ -1,12 +1,11 @@
-import {ID} from "./ID";
 import {Selection} from "./Selection";
 import {Status} from "./Status";
 
 export class Competition {
 
-    _id:ID;
+    _id:String;
     name:String;
-    game:ID;
+    game:String;
     description:String;
     shortName:String;
     updated:Date;
@@ -19,9 +18,9 @@ export class Competition {
     
     static fromJson(comp):Competition {
         var competition = new Competition();
-        competition._id = new ID(comp._id);
+        competition._id = comp._id;
         competition.name = comp.name;
-        competition.game = new ID(comp.game);
+        competition.game = comp.game;
         competition.description = comp.description;
         competition.shortName = comp.shortName;
         competition.updated = new Date(comp.updated * 1000); // unix -> js date
