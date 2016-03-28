@@ -1,12 +1,6 @@
-<div class="card-header">
-    {{selection.name}}
-</div>
-<ul class="list-group list-group-flush">
-    <li class="list-group-item">Score: <mark>{{selection.score || 'n/a'}}</mark></li>
-    <li class="list-group-item">Pot Index: {{selection.potIndex}}</li>
-    <li class="list-group-item">Handicap: {{selection.handicap}}</li>
-    <li class="list-group-item">Mulitlpier: {{selection.multiplier}}</li>
-</ul>
-<div class="card-block">
-    <a href="#" class="card-link">Remove</a>
-</div>
+<td class="strong">{{selection.name}}</td>
+<td>Score: <mark>{{selection.score || 'n/a'}}</mark></td>
+<td>Pot Index: {{selection.potIndex}}</td>
+<td>Handicap: {{selection.handicap}}</td>
+<td>Mulitlpier: {{selection.multiplier}}</td>
+<td><a href="#" class="card-link">Remove</a></td>

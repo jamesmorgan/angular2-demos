@@ -40,7 +40,7 @@ export class SelectionsService {
                     this.publishToObservers();
                 },
                 err => console.error('Failed to load selections', err),
-                () => console.log('Loaded selections', this.selections)
+                () => console.log('Loaded selections')
             );
     }
 

@@ -1,3 +1,5 @@
-<div class="card col-sm-3" *ngFor="#selection of selections">
-    <selection-item [selection]="selection"></selection-item>
-</div>
+<table class="table table-striped">
+    <tr *ngFor="#selection of selections">
+        <selection-item [selection]="selection"></selection-item>
+    </tr>
+</table>
