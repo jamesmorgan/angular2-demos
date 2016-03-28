@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from "angular2/core";
+import {Component, OnDestroy, OnInit, ChangeDetectionStrategy} from "angular2/core";
 import {CompetitionsListComponent} from "../competitions-list.component/competitions-list.component";
 import {Competition} from "../core/domain/Competition";
 import {CompetitionsService} from "../core/services/CompetitionsService";
@@ -12,7 +12,8 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
     directives: [
         ROUTER_DIRECTIVES,
         CompetitionsListComponent
-    ]
+    ],
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class AdminCompetitionDashboardComponent implements OnDestroy, OnInit {
 

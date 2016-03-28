@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from "angular2/core";
+import {Component, OnInit, OnDestroy, ChangeDetectionStrategy} from "angular2/core";
 import {RouteParams, CanActivate, OnActivate, ComponentInstruction} from "angular2/router";
 import {CompetitionsService} from "../core/services/CompetitionsService";
 import {Competition} from "../core/domain/Competition";
@@ -52,7 +52,7 @@ export class CompetitionEditComponent implements OnInit, OnActivate, OnDestroy {
             this.selections = selections;
         });
     }
-    
+
     routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any {
         console.log('routerOnActivate() -> nextInstruction', nextInstruction);
         console.log('routerOnActivate() -> prevInstruction', prevInstruction);
@@ -60,7 +60,6 @@ export class CompetitionEditComponent implements OnInit, OnActivate, OnDestroy {
 
     ngOnInit():any {
         var competitionId:string = this._routeParams.get('competitionId');
-        console.log('Calling OnInit CompetitionEditComponent with competitionId: ' + competitionId);
         this._competitionsService.findCompetition(competitionId)
             .subscribe(
                 (data:Competition) => {
@@ -70,7 +69,7 @@ export class CompetitionEditComponent implements OnInit, OnActivate, OnDestroy {
                 () => console.log('Loaded competition', this.competition)
             );
     }
-    
+
     ngOnDestroy():any {
         this._selectionsSubscription.unsubscribe(); // prevent memory leak when component destroyed
     }

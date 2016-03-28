@@ -1,11 +1,11 @@
-import {Component, Input} from "angular2/core";
+import {Component, Input, } from "angular2/core";
 import {CompetitionsService} from "../core/services/CompetitionsService";
 import {Selection} from "../core/domain/Selection";
 
 @Component({
     selector: 'selection-add',
     templateUrl: 'app/selection-add.component/selection-add.component.html',
-    styleUrls: ['app/selection-add.component/selection-add.component.css'],
+    styleUrls: ['app/selection-add.component/selection-add.component.css']
 })
 export class SelectionAddComponent {
 

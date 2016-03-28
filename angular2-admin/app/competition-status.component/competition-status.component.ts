@@ -1,4 +1,4 @@
-import {Component, Input} from "angular2/core";
+import {Component, Input, ChangeDetectionStrategy} from "angular2/core";
 import {CompetitionsService} from "../core/services/CompetitionsService";
 import {Status} from "../core/domain/Status";
 import {Competition} from "../core/domain/Competition";
@@ -7,7 +7,8 @@ import {Competition} from "../core/domain/Competition";
     selector: 'competition-status',
     templateUrl: 'app/competition-status.component/competition-status.component.html',
     styleUrls: ['app/competition-status.component/competition-status.component.css'],
-    directives: []
+    directives: [],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CompetitionStatusComponent {
 

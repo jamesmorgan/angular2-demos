@@ -1,4 +1,4 @@
-import {Component, OnDestroy, Input} from "angular2/core";
+import {Component, OnDestroy, Input, ChangeDetectionStrategy} from "angular2/core";
 import {Router} from "angular2/router";
 import {Competition} from "../core/domain/Competition";
 import {CompetitionStatusComponent} from "../competition-status.component/competition-status.component";
@@ -9,7 +9,8 @@ import {CompetitionStatusComponent} from "../competition-status.component/compet
     styleUrls: ['app/competitions-list.component/competitions-list.component.css'],
     directives: [
         CompetitionStatusComponent
-    ]
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CompetitionsListComponent implements OnDestroy {
 

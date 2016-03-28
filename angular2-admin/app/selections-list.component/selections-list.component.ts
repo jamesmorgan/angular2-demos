@@ -1,4 +1,4 @@
-import {Component, OnDestroy, Input} from "angular2/core";
+import {Component, OnDestroy, Input, ChangeDetectionStrategy} from "angular2/core";
 import {SelectionItemComponent} from "../selection-item.component/selection-item.component";
 import {Selection} from "../core/domain/Selection";
 
@@ -8,7 +8,8 @@ import {Selection} from "../core/domain/Selection";
     styleUrls: ['app/selections-list.component/selections-list.component.css'],
     directives: [
         SelectionItemComponent
-    ]
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectionsListComponent implements OnDestroy {
 

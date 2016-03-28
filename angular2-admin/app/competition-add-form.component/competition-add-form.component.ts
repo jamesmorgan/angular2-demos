@@ -1,4 +1,4 @@
-import {Component, OnDestroy} from "angular2/core";
+import {Component, OnDestroy, ChangeDetectionStrategy} from "angular2/core";
 import {FormCompetition} from "../core/domain/Competition";
 import {Status} from "../core/domain/Status";
 import {GamesService} from "../core/services/GameService";
@@ -8,7 +8,8 @@ import {Subscription} from "rxjs/Subscription";
     selector: 'competition-add-form',
     templateUrl: 'app/competition-add-form.component/competition-add-form.component.html',
     styleUrls: ['app/competition-add-form.component/competition-add-form.component.css'],
-    directives: []
+    directives: [],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CompetitionAddFormComponent implements OnDestroy {
 
@@ -29,8 +30,8 @@ export class CompetitionAddFormComponent implements OnDestroy {
     }
 
     onStatusSelected(value) {
-        console.log('onStatusSelected(value)', value);
         this.model.status = this.form.statuses.find((obj) => obj.value === value)
+        console.log('onStatusSelected(value) = ' + value, this.model.status);
     }
 
     ngOnDestroy():any {

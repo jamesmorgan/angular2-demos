@@ -55,14 +55,17 @@ export class CompetitionsService {
     }
 
     public findCompetition(compId:String):Observable<Competition> {
+        console.log('findCompetition() ', compId);
         return this._competitionApi.findCompetition(compId);
     }
 
     public createCompetition(comp:Competition) {
+        console.log('createCompetition() ', comp);
         return this._competitionApi.create(comp);
     }
 
     public addSelectionToCompetition(compId:String, selection:Selection) {
+        console.log('addSelectionToCompetition() ', compId, selection);
         return this._competitionApi.saveSelectionForComp(compId, selection)
             .subscribe(
                 res => {
@@ -75,6 +78,7 @@ export class CompetitionsService {
     }
 
     public updateStatus(compId:String, status:Status):void {
+        console.log('updateStatus() ', compId, status);
         // FIXME this won't work if the users has not already populate the this.competitions list
         var compIdx = this.competitions.findIndex((comp:Competition) => {
             return comp._id === compId;
