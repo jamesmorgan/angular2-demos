@@ -63,15 +63,22 @@ export class CompetitionsService {
     }
 
     public addSelectionToCompetition(compId:String, selection:Selection) {
-        return this._competitionApi.saveSelectionForComp(compId, selection)
-            .subscribe(
-                res => {
-                    console.info('Successfully added selection', res);
-                    // this.competitions[compIdx].status = status;
-                    this.publishToObservers();
-                },
-                err => console.error('Failed to update status', err)
-            );
+        // FIXME this won't work if the users has not already populate the this.competitions list
+        var compIdx = this.competitions.findIndex((comp:Competition) => {
+            return comp._id === compId;
+        });
+
+        if (compIdx >= 0) {
+            return this._competitionApi.saveSelectionForComp(compId, selection)
+                .subscribe(
+                    res => {
+                        console.info('Successfully added selection', res);
+                        this.competitions[compIdx].selections.push(selection);
+                        this.publishToObservers();
+                    },
+                    err => console.error('Failed to update status', err)
+                );
+        }
     }
 
     public updateStatus(compId:String, status:Status):void {
