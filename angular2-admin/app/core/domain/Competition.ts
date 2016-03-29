@@ -15,7 +15,7 @@ export class Competition {
     status:Status;
     order:boolean;
     image:String;
-    
+
     static fromJson(comp):Competition {
         var competition = new Competition();
         competition._id = comp._id;
@@ -48,4 +48,18 @@ export class FormCompetition {
     status:Status;
     order:boolean;
     image:string;
+
+    // TODO this feels wrong...?
+    toCompetition():Competition {
+        var competition = new Competition();
+        competition.name = this.name;
+        competition.game = this.game;
+        competition.description = this.description;
+        competition.shortName = this.shortName;
+        competition.status = this.status;
+        competition.order = this.order;
+        competition.image = this.image;
+        competition.selections = this.selections;
+        return competition;
+    }
 }

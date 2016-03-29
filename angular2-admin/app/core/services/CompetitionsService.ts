@@ -61,8 +61,15 @@ export class CompetitionsService {
 
     public createCompetition(comp:Competition) {
         console.log('createCompetition() ', comp);
-        return this._competitionApi.create(comp);
+        var observer = this._competitionApi.create(comp);
+        observer.subscribe(
+            (result) => console.log('Result createCompetition()', result),
+            (error) => console.log('Failed createCompetition()', error),
+            () => console.log('Finished create createCompetition()')
+        );
+        return observer;
     }
+
 
     public addSelectionToCompetition(compId:String, selection:Selection) {
         console.log('addSelectionToCompetition() ', compId, selection);
