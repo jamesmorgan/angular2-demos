@@ -9,7 +9,8 @@ export class Selection {
     score:number;
     sport:String;
     avatar:String;
-    
+
+
     setSelectionDefaults() {
         this.score = 0;
         this.multiplier = 1;

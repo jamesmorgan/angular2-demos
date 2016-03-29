@@ -20,4 +20,12 @@ export class Status {
         this.value = status;
     }
 
+    /**
+     * Override toJSON method for JSON.stringify()
+     *
+     * @return {String}
+     */
+    toJSON():string {
+        return this.value;
+    }
 }
