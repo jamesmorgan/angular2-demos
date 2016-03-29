@@ -14,8 +14,17 @@ export class CompetitionApi {
 
     create(comp:Competition) {
         return this._http.post(BASE_URL + '/auth/competition', JSON.stringify(comp), {
-            headers: json()
-        });
+                headers: json()
+            })
+            .map(res => res.json())
+            .map((competition)=> {
+                try {
+                    // TODO fix this - currently returns 200 when invalid this ishugld be revmoed when correct status code returned
+                    return Competition.fromJson(competition);
+                } catch (e) {
+                    return competition;
+                }
+            });
     }
 
     load():Observable<Competition[]> {

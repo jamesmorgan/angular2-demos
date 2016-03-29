@@ -4,6 +4,7 @@ import {Status} from "../core/domain/Status";
 import {GamesService} from "../core/services/GameService";
 import {Subscription} from "rxjs/Subscription";
 import {CompetitionsService} from "../core/services/CompetitionsService";
+import {Router} from "angular2/router";
 
 @Component({
     selector: 'competition-add-form',
@@ -24,7 +25,9 @@ export class CompetitionAddFormComponent implements OnDestroy {
 
     private _gamesSubscription:Subscription;
 
-    constructor(private _gamesService:GamesService, private _competitionService:CompetitionsService) {
+    constructor(private _router:Router,
+                private _gamesService:GamesService,
+                private _competitionService:CompetitionsService) {
         this._gamesSubscription = this._gamesService.gamesChanged$.subscribe((games) => {
             this.form.games = [...games];
         });
@@ -33,14 +36,9 @@ export class CompetitionAddFormComponent implements OnDestroy {
     createCompetition() {
         var comp = this.model.toCompetition();
         this._competitionService.createCompetition(comp)
-            .subscribe(
-                (result) => {
-                    
-                },
-                (err) => {
-
-                }
-            )
+            .subscribe((newCompetition) => {
+                this._router.navigate(['AdminCompetitionEdit', {competitionId: newCompetition._id}]);
+            })
     }
 
     onStatusSelected(value) {

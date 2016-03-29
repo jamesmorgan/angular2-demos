@@ -39,12 +39,10 @@ export class Competition {
 //TODO I needed a simplified model as I could not bind to the Status Object?
 export class FormCompetition {
     name:string;
-    game:string;
-    description:string;
     shortName:string;
-    gameId:string;
+    description:string;
     start:Date;
-    selections:Selection[];
+    gameId:string;
     status:Status;
     order:boolean;
     image:string;
@@ -53,13 +51,14 @@ export class FormCompetition {
     toCompetition():Competition {
         var competition = new Competition();
         competition.name = this.name;
-        competition.game = this.game;
-        competition.description = this.description;
         competition.shortName = this.shortName;
+        competition.description = this.description;
+        competition.game = this.gameId;
+        competition.start = this.start;
         competition.status = this.status;
         competition.order = this.order;
         competition.image = this.image;
-        competition.selections = this.selections;
+        competition.selections = [];
         return competition;
     }
 }

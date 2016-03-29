@@ -56,15 +56,21 @@ export class CompetitionsService {
 
     public findCompetition(compId:String):Observable<Competition> {
         console.log('findCompetition() ', compId);
-        return this._competitionApi.findCompetition(compId);
+        var observer = this._competitionApi.findCompetition(compId);
+        observer.subscribe(
+            (result) => console.info('Result findCompetition()', result),
+            (error) => console.error('Failed findCompetition()', error),
+            () => console.log('Finished create findCompetition()')
+        );
+        return observer;
     }
 
     public createCompetition(comp:Competition) {
         console.log('createCompetition() ', comp);
         var observer = this._competitionApi.create(comp);
         observer.subscribe(
-            (result) => console.log('Result createCompetition()', result),
-            (error) => console.log('Failed createCompetition()', error),
+            (result) => console.info('Result createCompetition()', result),
+            (error) => console.error('Failed createCompetition()', error),
             () => console.log('Finished create createCompetition()')
         );
         return observer;
@@ -77,7 +83,6 @@ export class CompetitionsService {
             .subscribe(
                 res => {
                     console.info('Successfully added selection', res);
-                    // this.competitions[compIdx].status = status;
                     this.publishToObservers();
                 },
                 err => console.error('Failed to update status', err)

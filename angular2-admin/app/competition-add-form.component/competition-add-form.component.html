@@ -39,10 +39,6 @@
             </div>
 
             <div class="form-group">
-                TODO selections
-            </div>
-
-            <div class="form-group">
                 <label for="status">Opening Status</label>
                 <select id="status" [(ngModel)]="form.newStatus" (ngModelChange)="onStatusSelected(form.newStatus)" class="form-control" required>
                     <option *ngFor="#status of form.statuses" [(value)]="status.value">{{status.value}}</option>
