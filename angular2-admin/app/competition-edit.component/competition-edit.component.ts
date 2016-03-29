@@ -1,5 +1,5 @@
-import {Component, OnInit, OnDestroy, ChangeDetectionStrategy} from "angular2/core";
-import {RouteParams, CanActivate, OnActivate, ComponentInstruction} from "angular2/router";
+import {Component, OnInit, OnDestroy} from "angular2/core";
+import {RouteParams, CanActivate, OnActivate, ComponentInstruction, Router} from "angular2/router";
 import {CompetitionsService} from "../core/services/CompetitionsService";
 import {Competition} from "../core/domain/Competition";
 import {Selection} from "../core/domain/Selection";
@@ -44,7 +44,8 @@ export class CompetitionEditComponent implements OnInit, OnActivate, OnDestroy {
 
     private _selectionsSubscription:Subscription;
 
-    constructor(private _routeParams:RouteParams,
+    constructor(private _router:Router,
+                private _routeParams:RouteParams,
                 private _competitionsService:CompetitionsService,
                 private _selectionsService:SelectionsService) {
         // Subscribe an changes which may happen
@@ -56,6 +57,13 @@ export class CompetitionEditComponent implements OnInit, OnActivate, OnDestroy {
     routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any {
         console.log('routerOnActivate() -> nextInstruction', nextInstruction);
         console.log('routerOnActivate() -> prevInstruction', prevInstruction);
+    }
+
+    deleteCompetition(competition) {
+        this._competitionsService.deleteCompetition(competition._id)
+            .subscribe(() => {
+                this._router.navigate(['AdminCompetitionDashboard']);
+            })
     }
 
     ngOnInit():any {

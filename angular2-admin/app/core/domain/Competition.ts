@@ -41,7 +41,7 @@ export class FormCompetition {
     name:string;
     shortName:string;
     description:string;
-    start:Date;
+    start:number;
     gameId:string;
     status:Status;
     order:boolean;
@@ -54,7 +54,7 @@ export class FormCompetition {
         competition.shortName = this.shortName;
         competition.description = this.description;
         competition.game = this.gameId;
-        competition.start = this.start;
+        // competition.start = new Date().getTime(); // this.start; - TODO hoe to map to Date .. ?
         competition.status = this.status;
         competition.order = this.order;
         competition.image = this.image;

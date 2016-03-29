@@ -15,6 +15,12 @@
             <competition-status [competition]="competition" class="pull-sm-right"></competition-status>
         </p>
 
+        <p>
+            <button class="btn"
+                    (click)="deleteCompetition(competition)"
+                    [disabled]="!competition">delete</button>
+        </p>
+
         <ul class="list-group bottom-margin-md">
             <li class="list-group-item" *ngIf="competition && competition.updated">
                 Updated: {{competition.updated | date:'short'}}

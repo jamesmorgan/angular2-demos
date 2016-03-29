@@ -18,13 +18,15 @@ export class CompetitionApi {
             })
             .map(res => res.json())
             .map((competition)=> {
-                try {
-                    // TODO fix this - currently returns 200 when invalid this ishugld be revmoed when correct status code returned
-                    return Competition.fromJson(competition);
-                } catch (e) {
-                    return competition;
-                }
+                return Competition.fromJson(competition);
             });
+    }
+    
+    delete(compId:string) {
+        return this._http.delete(BASE_URL + '/competition/' + compId, {
+                headers: json()
+            })
+            .map(res => res.json());
     }
 
     load():Observable<Competition[]> {

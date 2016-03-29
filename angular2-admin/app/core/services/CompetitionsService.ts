@@ -76,6 +76,24 @@ export class CompetitionsService {
         return observer;
     }
 
+    public deleteCompetition(compId:string) {
+        // FIXME this won't work if the users has not already populate the this.competitions list
+        var compIdx = this.competitions.findIndex((comp:Competition) => {
+            return comp._id === compId;
+        });
+
+        var observer = this._competitionApi.delete(compId);
+        observer.subscribe(
+            (result) => {
+                console.info('Result deleteCompetition()', result)
+                delete this.competitions[compIdx];
+                this.publishToObservers();
+            },
+            (error) => console.error('Failed deleteCompetition()', error),
+            () => console.log('Finished create deleteCompetition()')
+        );
+        return observer;
+    }
 
     public addSelectionToCompetition(compId:String, selection:Selection) {
         console.log('addSelectionToCompetition() ', compId, selection);
