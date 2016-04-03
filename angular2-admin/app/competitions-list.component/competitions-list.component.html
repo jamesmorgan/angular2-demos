@@ -2,16 +2,16 @@
     <li class="media" *ngFor="#competition of competitions">
         <div class="media-left">
             <a href="#">
-                <img class="media-object" data-src="{{ competition.image }}" alt="{{ competition.shortName }}">
+                <img class="media-object" data-src="{{ competition?.image }}" alt="{{ competition?.shortName }}">
             </a>
         </div>
         <div class="media-body">
-            <h2 class="media-heading">{{ competition.name }}</h2>
+            <h2 class="media-heading">{{ competition?.name }}</h2>
 
             <button (click)="loadCompetition(competition)" class="btn btn-primary btn-sm pull-sm-right">GO</button>
 
             <p>
-                {{ competition.description }}
+                {{ competition?.description }}
             </p>
 
             <competition-status [competition]="competition" class="pull-sm-right"></competition-status>

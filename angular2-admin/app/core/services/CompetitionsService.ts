@@ -77,6 +77,7 @@ export class CompetitionsService {
     }
 
     public deleteCompetition(compId:string) {
+        console.log('deleteCompetition() ', compId);
         // FIXME this won't work if the users has not already populate the this.competitions list
         var compIdx = this.competitions.findIndex((comp:Competition) => {
             return comp._id === compId;
@@ -85,7 +86,7 @@ export class CompetitionsService {
         var observer = this._competitionApi.delete(compId);
         observer.subscribe(
             (result) => {
-                console.info('Result deleteCompetition()', result)
+                console.info('Result deleteCompetition()', result);
                 delete this.competitions[compIdx];
                 this.publishToObservers();
             },
