@@ -31,7 +31,7 @@
         </ul>
 
         <div *ngIf="competition && competition.selections">
-            <selections-list [selections]="competition.selections"></selections-list>
+            <selections-list [competition]="competition" [selections]="competition.selections"></selections-list>
         </div>
 
         <div *ngIf="competition && selections" class="col-sm-3">

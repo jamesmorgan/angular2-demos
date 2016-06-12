@@ -1,6 +1,7 @@
+<td>Pot Index: {{selection.potIndex}}</td>
 <td class="strong">{{selection.name}}</td>
 <td>Score: <mark>{{selection.score}}</mark></td>
-<td>Pot Index: {{selection.potIndex}}</td>
 <td>Handicap: {{selection.handicap}}</td>
-<td>Mulitlpier: {{selection.multiplier}}</td>
-<td><a href="#" class="card-link">Remove</a></td>
+<td>Multiplier: {{selection.multiplier}}</td>
+<td><button (click)="adjustScore(1)" class="btn pull-sm-right">+</button></td>
+<td><button (click)="adjustScore(-1)" class="btn pull-sm-right">-</button></td>

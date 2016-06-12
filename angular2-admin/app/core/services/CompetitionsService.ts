@@ -99,4 +99,29 @@ export class CompetitionsService {
                 );
         }
     }
+
+    public updateSelectionScore(compId:String, selectionId:String, newScore):void {
+        // FIXME this won't work if the users has not already populate the this.competitions list
+        var compIdx = this.competitions.findIndex((comp:Competition) => {
+            return comp._id === compId;
+        });
+
+        if (compIdx >= 0) {
+            this._competitionApi.updateScore(compId, selectionId, newScore)
+                .subscribe(
+                    res => {
+                        console.info('Successfully updated score', res);
+
+                        this.competitions[compIdx].selections.find((selection:Selection) => {
+                            if (selection._id == selectionId) {
+                                selection.score = newScore
+                            }
+                        });
+                        
+                        this.publishToObservers();
+                    },
+                    err => console.error('Failed to update selection score', err)
+                );
+        }
+    }
 }

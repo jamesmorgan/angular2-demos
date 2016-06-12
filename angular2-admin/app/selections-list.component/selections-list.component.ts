@@ -1,6 +1,7 @@
 import {Component, OnDestroy, Input} from "angular2/core";
 import {SelectionItemComponent} from "../selection-item.component/selection-item.component";
 import {Selection} from "../core/domain/Selection";
+import {Competition} from "../core/domain/Competition";
 
 @Component({
     selector: 'selections-list',
@@ -14,6 +15,7 @@ export class SelectionsListComponent implements OnDestroy {
 
     /** Public data */
     @Input() selections:Selection[];
+    @Input() competition:Competition;
 
     ngOnDestroy() {
 

@@ -1,4 +1,4 @@
-import {Http, Response} from "angular2/http";
+import {Http, Response, Headers} from "angular2/http";
 import {Observable} from "rxjs/Observable";
 import {Injectable} from "angular2/core";
 import {Status} from "../domain/Status";
@@ -8,10 +8,10 @@ import {BASE_URL, json} from "./Api";
 
 @Injectable()
 export class CompetitionApi {
-
+   
     constructor(private _http:Http) {
     }
-
+    
     create(comp:Competition) {
         return this._http.post(BASE_URL + '/auth/competition', JSON.stringify(comp), {
             headers: json()
@@ -36,14 +36,14 @@ export class CompetitionApi {
 
     saveSelectionForComp(compId:String, selection:Selection):Observable<Response> {
         // /auth/ URLs are protected by the middleware
-        return this._http.put(BASE_URL + '/auth/competition/selection/push/' + compId, JSON.stringify(selection), {
+        return this._http.post(BASE_URL + '/auth/competition/selection/push/' + compId, JSON.stringify(selection), {
             headers: json()
         });
     }
 
     updateScore(compId:String, selectionId:String, score:number):Observable<Response> {
         var payload = {
-            selectionId: selectionId,
+            _id: selectionId,
             score: score
         };
 
@@ -57,7 +57,7 @@ export class CompetitionApi {
         var payload = {
             status: status.value
         };
-        return this._http.put(BASE_URL + '/competition/status/' + compId, JSON.stringify(payload), {
+        return this._http.put(BASE_URL + '/auth/competition/status/' + compId, JSON.stringify(payload), {
             headers: json()
         });
     }
